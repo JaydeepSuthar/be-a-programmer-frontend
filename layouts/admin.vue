@@ -1,7 +1,28 @@
 <template>
 	<v-app id="be-a-programmer">
 		<v-navigation-drawer v-model="drawer" app>
-			<h2>Sidebar</h2>
+			<v-sheet color="grey lighten-4" class="pa-4">
+				<v-avatar
+					id="avatar"
+					class="mb-4"
+					color="grey darken-1"
+					size="64"
+				></v-avatar>
+
+				<div><h2>Be A Programmer</h2></div>
+			</v-sheet>
+
+			<v-list dense nav>
+				<v-list-item v-for="item in items" :key="item.title" link>
+					<v-list-item-icon>
+						<v-icon>{{ item.icon }}</v-icon>
+					</v-list-item-icon>
+
+					<v-list-item-content>
+						<v-list-item-title>{{ item.title }}</v-list-item-title>
+					</v-list-item-content>
+				</v-list-item>
+			</v-list>
 		</v-navigation-drawer>
 
 		<v-app-bar app elevate-on-scroll>
@@ -20,7 +41,13 @@
 
 <script>
 	export default {
-		name: "AdminLayout",
-		data: () => ({ drawer: null }),
+		name: "admin",
+		data: () => ({
+			drawer: null,
+			items: [
+				{ title: "Dashboard", icon: "mdi-view-dashboard" },
+				{ title: "Users", icon: "mdi-account" },
+			],
+		}),
 	};
 </script>
