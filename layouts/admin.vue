@@ -13,7 +13,7 @@
 			</v-sheet>
 
 			<v-list dense nav>
-				<v-list-item v-for="item in items" :key="item.title" link>
+				<v-list-item v-for="item in items" :key="item.title" :to="item.to" exact link>
 					<v-list-item-icon>
 						<v-icon>{{ item.icon }}</v-icon>
 					</v-list-item-icon>
@@ -23,6 +23,13 @@
 					</v-list-item-content>
 				</v-list-item>
 			</v-list>
+
+			<!-- <v-spacer></v-spacer> -->
+
+			<v-btn depressed>
+				<span>Logout</span>
+				<v-icon>mdi-logout</v-icon>
+			</v-btn>
 		</v-navigation-drawer>
 
 		<v-app-bar app elevate-on-scroll>
@@ -43,10 +50,11 @@
 	export default {
 		name: "admin",
 		data: () => ({
-			drawer: null,
+			drawer: true,
 			items: [
-				{ title: "Dashboard", icon: "mdi-view-dashboard" },
-				{ title: "Users", icon: "mdi-account" },
+				{ title: "Dashboard", icon: "mdi-view-dashboard", to: "/admin" },
+				{ title: "Users", icon: "mdi-account", to: "/admin/user" },
+				{ title: "Course", icon: "mdi-video", to: "/admin/course" }
 			],
 		}),
 	};
