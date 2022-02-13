@@ -24,8 +24,6 @@
 				</v-list-item>
 			</v-list>
 
-			<!-- <v-spacer></v-spacer> -->
-
 			<v-btn depressed>
 				<span>Logout</span>
 				<v-icon>mdi-logout</v-icon>
