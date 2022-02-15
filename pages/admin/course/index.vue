@@ -2,11 +2,13 @@
 	<div id="course">
 		<h2>Course</h2>
 
-		<v-btn class="primary">Add Course</v-btn>
+		<v-btn @click="showDialog = !showDialog" class="success mb-5">Add Course</v-btn>
+
+		<DialogForm :dialog="showDialog" />
 
 		<v-data-table
 			:headers="headers"
-			:items="desserts"
+			:items="courses"
 			:items-per-page="5"
 			class="mt-4 elevation-1"
 		></v-data-table>
@@ -19,18 +21,45 @@
 		layout: "admin",
 		data() {
 			return {
+				showDialog: false,
 				headers: [
 					{
 						text: "Title",
 						align: "start",
 						sortable: false,
-						value: "name",
+						value: "title",
 					},
-					{ text: "Slug", value: "calories" },
-					{ text: "Price", value: "fat" },
-					{ text: "Duration", value: "carbs" },
-					{ text: "is_active", value: "protein" },
-					{ text: "Instructor", value: "iron" },
+					{ text: "Slug", value: "slug" },
+					{ text: "Price", value: "price" },
+					{ text: "Duration", value: "duration" },
+					{ text: "is_active", value: "is_active" },
+					{ text: "Instructor", value: "instructor" },
+				],
+				courses: [
+					{
+						title: "Nodejs Master Class",
+						slug: "node-masterclass",
+						price: 700,
+						duration: "60 days",
+						is_active: true,
+						instructor: "Jaydeep Suthar"
+					},
+					{
+						title: "Reactjs Master Class",
+						slug: "react-masterclass",
+						price: 500,
+						duration: "30 days",
+						is_active: false,
+						instructor: "Keval Mangroliya"
+					},
+					{
+						title: "Vue Master Class",
+						slug: "vue-masterclass",
+						price: 500,
+						duration: "20 days",
+						is_active: true,
+						instructor: "Jaydeep Suthar"
+					},
 				],
 				desserts: [
 					{
@@ -116,5 +145,10 @@
 				],
 			};
 		},
+		methods: {
+			closeDialogBox(value) {
+				this.showDialog = value;
+			}
+		}
 	};
 </script>
