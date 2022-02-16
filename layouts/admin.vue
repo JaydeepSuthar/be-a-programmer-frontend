@@ -54,7 +54,7 @@
 				{ title: "Users", icon: "mdi-account", to: "/admin/user" },
 				{ title: "Course", icon: "mdi-video", to: "/admin/course" },
 				// { title: "Chapter", icon: "mdi-book", to: "/admin/chapter" }
-				{ title: "Blog", icon: "mdi-video", to: "/admin/blog" },
+				{ title: "Blog", icon: "mdi-book", to: "/admin/blog" },
 			],
 		}),
 	};

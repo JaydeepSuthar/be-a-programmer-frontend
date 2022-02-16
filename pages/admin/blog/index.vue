@@ -16,9 +16,7 @@
 					<v-divider class="mx-4" inset vertical></v-divider>
 					<v-spacer></v-spacer>
 
-					<v-btn @click="showDialog = !showDialog" class="success"
-						>Add Blog</v-btn
-					>
+					<v-btn class="success" to="./blog/new" nuxt>Add Blog</v-btn>
 
 					<v-dialog v-model="dialogDelete" max-width="500px">
 						<v-card>
@@ -43,8 +41,8 @@
 				<!-- <v-icon small class="mr-2" @click="editItem(item)">
 					mdi-pencil
 				</v-icon> -->
-				<v-btn small @click="editBlog(item)" class="mr-2 warning"
-					>Edit</v-btn
+				<v-btn small :to="`./blog/${item.id}/edit`" class="mr-2 warning"
+					nuxt>Edit</v-btn
 				>
 				<v-btn small @click="deleteBlog(item)" class="mr-2 error"
 					>Delete</v-btn
@@ -94,17 +92,30 @@
 			closeDialogBox(value) {
 				this.showDialog = value;
 			},
+
 			async editBlog(blog) {
-				// const response = await this.$axios.delete(
-				// 	`/blog/delete/${blog.id}`
-				// );
 				console.log(`Blog Edit Successfully: ${blog.id}`);
 			},
+
 			async deleteBlog(blog) {
-				const response = await this.$axios.delete(
-					`/blog/delete/${blog.id}`
+				let confirmation = confirm(
+					`Are you sure you want to delete ${blog.title}`
 				);
-				console.log(`Blog Deleted Successfully: ${response.data}`);
+
+				if (confirmation) {
+					const response = await this.$axios.delete(
+						`/blog/delete/${blog.id}`
+					);
+
+					console.log(`Blog Deleted Successfully: ${response.data}`);
+
+					this.$store.dispatch("snackbar/setSnackbar", {
+						text: `You have successfully deleted your blog, ${blog.title}.`,
+					});
+
+					// TODO: NOT THE MOST EFFECIENT WAY
+					this.$nuxt.refresh();
+				}
 			},
 		},
 	};
