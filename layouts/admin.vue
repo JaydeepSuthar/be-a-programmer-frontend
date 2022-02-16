@@ -52,7 +52,8 @@
 			items: [
 				{ title: "Dashboard", icon: "mdi-view-dashboard", to: "/admin" },
 				{ title: "Users", icon: "mdi-account", to: "/admin/user" },
-				{ title: "Course", icon: "mdi-video", to: "/admin/course" }
+				{ title: "Course", icon: "mdi-video", to: "/admin/course" },
+				// { title: "Chapter", icon: "mdi-book", to: "/admin/chapter" }
 			],
 		}),
 	};
