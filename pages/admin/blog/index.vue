@@ -1,24 +1,23 @@
 <template>
 	<div id="course">
-
 		<DialogForm :dialog="showDialog" />
 
 		<v-data-table
 			:headers="headers"
-			:items="courses"
+			:items="blogs"
 			:items-per-page="10"
 			class="mt-10 elevation-3"
 		>
 			<template v-slot:top>
 				<v-toolbar flat>
-					<v-toolbar-title class="display-1 text-decoration-underline">All Courses</v-toolbar-title>
+					<v-toolbar-title class="display-1 text-decoration-underline"
+						>All Blogs</v-toolbar-title
+					>
 					<v-divider class="mx-4" inset vertical></v-divider>
 					<v-spacer></v-spacer>
 
-					<v-btn
-						@click="showDialog = !showDialog"
-						class="success"
-						>Add Course</v-btn
+					<v-btn @click="showDialog = !showDialog" class="success"
+						>Add Blog</v-btn
 					>
 
 					<v-dialog v-model="dialogDelete" max-width="500px">
@@ -29,18 +28,10 @@
 							>
 							<v-card-actions>
 								<v-spacer></v-spacer>
-								<v-btn
-									color="blue darken-1"
-									text
-									@click="closeDelete"
-									>Cancel</v-btn
-								>
-								<v-btn
-									color="blue darken-1"
-									text
-									@click="deleteItemConfirm"
-									>OK</v-btn
-								>
+								<v-btn color="blue darken-1" text>Cancel</v-btn>
+								<!-- @click="closeDelete" -->
+								<v-btn color="blue darken-1" text>OK</v-btn>
+								<!-- @click="deleteItemConfirm" -->
 								<v-spacer></v-spacer>
 							</v-card-actions>
 						</v-card>
@@ -52,9 +43,13 @@
 				<!-- <v-icon small class="mr-2" @click="editItem(item)">
 					mdi-pencil
 				</v-icon> -->
-				<v-btn small class="mr-2 warning">Edit</v-btn>
-				<v-btn small class="mr-2 error">Delete</v-btn>
-				<v-btn small class="info" @click="showChapter(item)">Chapters</v-btn>
+				<v-btn small @click="editBlog(item)" class="mr-2 warning"
+					>Edit</v-btn
+				>
+				<v-btn small @click="deleteBlog(item)" class="mr-2 error"
+					>Delete</v-btn
+				>
+				<!-- <v-btn small class="info" @click="showChapter(item)">Chapters</v-btn> -->
 				<!-- <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon> -->
 			</template>
 		</v-data-table>
@@ -66,12 +61,11 @@
 	export default {
 		layout: "admin",
 		async asyncData({ $axios, store }) {
-			let response = await $axios.get(`/course`);
-			let courses = await response.data;
-			console.log(response);
-			// store.commit('SET_COURSES', courses);
+			let response = await $axios.get(`/blog`);
+			let blogs = await response.data.data;
+
 			return {
-				courses,
+				blogs,
 			};
 		},
 
@@ -86,24 +80,32 @@
 						value: "title",
 					},
 					{ text: "Slug", value: "slug" },
-					{ text: "Price", value: "price" },
-					{ text: "Duration(in Months)", value: "duration" },
-					{ text: "is_active", value: "is_active" },
-					{ text: "Instructor", value: "admin.name" },
+					{ text: "Is_active", value: "is_active" },
+					{ text: "Tags", value: "tags" },
+					{ text: "Author", value: "admin.name" },
 					{ text: "Actions", value: "actions", sortable: false },
+					// { text: "Duration(in Months)", value: "duration" },
+					// { text: "Price", value: "price" },
 				],
-				courses: [],
+				blogs: [],
 			};
 		},
 		methods: {
 			closeDialogBox(value) {
 				this.showDialog = value;
 			},
-			showChapter(value) {
-				// FIXME: THIS IS INCOMPLETE
-				console.log(value);
-				this.$router.push(`/admin/course/${value.id}/chapter`)
-			}
+			async editBlog(blog) {
+				// const response = await this.$axios.delete(
+				// 	`/blog/delete/${blog.id}`
+				// );
+				console.log(`Blog Edit Successfully: ${blog.id}`);
+			},
+			async deleteBlog(blog) {
+				const response = await this.$axios.delete(
+					`/blog/delete/${blog.id}`
+				);
+				console.log(`Blog Deleted Successfully: ${response.data}`);
+			},
 		},
 	};
 </script>
