@@ -3,7 +3,7 @@
 		<v-col cols="12" sm="6" md="6">
 			<v-text-field
 				outlined
-				v-model="video.title"
+				v-model="course.title"
 				label="Title"
 				counter="50"
 				:rules="[
@@ -16,7 +16,7 @@
 		<v-col cols="12" sm="6" md="6">
 			<v-text-field
 				outlined
-				v-model="video.slug"
+				v-model="course.slug"
 				label="slug"
 				counter="50"
 				:rules="[
@@ -29,38 +29,42 @@
 		<v-col cols="12" sm="12" md="12">
 			<v-textarea
 				outlined
-				v-model="video.description"
+				v-model="course.description"
 				label="Description"
 				counter="true"
 				:rules="[required('description'), minLength('description', 20)]"
 			/>
 		</v-col>
 		<v-col cols="12">
-			<v-btn class="primary">
-				<v-icon left>mdi-cloud-upload</v-icon>
-				<span>Upload</span>
-				<!-- <v-file-input hide-input hidden></v-file-input> -->
-			</v-btn>
+			<!-- <v-btn class="primary"> -->
+			<!-- <v-icon left>mdi-cloud-upload</v-icon> -->
+			<!-- <span>Upload</span> -->
+			<v-file-input
+				filled
+				prepend-icon="mdi-camera"
+			></v-file-input>
+				<!-- v-model="course.image" -->
+			<!-- </v-btn> -->
 		</v-col>
 		<v-col cols="12" sm="6" md="4">
 			<v-text-field
 				outlined
 				type="number"
-				v-model="video.price"
+				v-model="course.price"
 				label="Price"
 				:rules="[required('Price')]"
 			/>
 		</v-col>
 
 		<v-col cols="12" sm="6" md="4">
-			<v-text-field outlined v-model="video.duration" label="Duration" />
+			<v-text-field outlined v-model="course.duration" label="Duration" />
 			<!-- :rules="[required('Course duration')]" -->
 		</v-col>
 
 		<v-col cols="12" sm="6" md="4">
 			<v-text-field
 				outlined
-				v-model="video.requirement"
+				v-model="course.requirement"
 				label="Requirement"
 			/>
 			<!-- :rules="[required('basic requirement for course')]" -->
@@ -68,7 +72,7 @@
 
 		<v-col cols="12">
 			<v-checkbox
-				v-model="video.is_active"
+				v-model="course.is_active"
 				label="Is Active"
 				color="info"
 			></v-checkbox>
@@ -78,9 +82,15 @@
 			<v-text-field
 				outlined
 				readonly
-				v-model="video.instructor"
+				v-model="course.instructor"
 				label="Instructor"
 			/>
+		</v-col>
+
+		<v-col cols="12">
+			<v-btn class="success" x-large block @click="handleSubmit"
+				>Create Course</v-btn
+			>
 		</v-col>
 	</v-row>
 </template>
@@ -94,11 +104,11 @@
 			return {
 				valid: false,
 				...validation,
-				video: {
+				course: {
 					title: "",
 					slug: "",
 					description: "",
-					thumbnail: "",
+					image: "",
 					price: 0,
 					duration: "",
 					requirement: "",
@@ -106,6 +116,15 @@
 					instructor: "Jaydeep Suthar",
 				},
 			};
+		},
+		methods: {
+			async handleSubmit() {
+				const response = await this.$axios.post("/course/add", this.course);
+				console.log(response.data);
+				if (response.data.is_success === true) {
+					this.$router.push("/admin/course");
+				}
+			},
 		},
 	};
 </script>
