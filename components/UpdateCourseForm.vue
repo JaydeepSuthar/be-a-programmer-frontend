@@ -96,7 +96,7 @@
 	import validation from "@/utils/validations";
 
 	export default {
-		name: "CourseCreateForm",
+		name: "UpdateCreateForm",
 		data() {
 			return {
 				valid: false,
@@ -106,29 +106,30 @@
 					slug: "",
 					description: "",
 					// thumbnail: "",
-					price: '',
+					price: "",
 					duration: "",
 					requirement: "",
-					is_active: '',
-					adminId: '620cc340ed391d5f33f13b6d'
+					is_active: "",
+					adminId: "620cc340ed391d5f33f13b6d",
 				},
 			};
 		},
 		methods: {
 			async handleSubmit() {
-				try {
-					const response = await this.$axios.post(
-						"/course/add",
-						this.course
-					);
-					console.log(response.data);
-					if (response.data.is_success === true) {
-						this.$router.push("/admin/course");
-					}
-				} catch ({ response }) {
-					alert(response.data.error);
-				}
+				// try {
+				// 	const response = await this.$axios.put(
+				// 		`/update/${}`,
+				// 		this.course
+				// 	);
+				// 	console.log(response.data);
+				// 	if (response.data.is_success === true) {
+				// 		this.$router.push("/admin/course");
+				// 	}
+				// } catch ({ response }) {
+				// 	alert(response.data.error);
+				// }
 			},
 		},
+
 	};
 </script>

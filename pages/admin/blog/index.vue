@@ -1,18 +1,31 @@
 <template>
-	<div id="course">
-		<DialogForm :dialog="showDialog" />
+	<div id="blog">
+		<v-card>
+			<v-card-title>
+				All Blog
+				<v-spacer></v-spacer>
+				<v-text-field
+					v-model="search"
+					append-icon="mdi-magnify"
+					label="Search Blog"
+					single-line
+					hide-details
+				></v-text-field>
+			</v-card-title>
+		</v-card>
 
 		<v-data-table
+			:search="search"
 			:headers="headers"
 			:items="blogs"
 			:items-per-page="10"
-			class="mt-10 elevation-3"
+			class="mt-5 elevation-3"
 		>
 			<template v-slot:top>
 				<v-toolbar flat>
-					<v-toolbar-title class="display-1 text-decoration-underline"
+					<!-- <v-toolbar-title class="display-1 text-decoration-underline"
 						>All Blogs</v-toolbar-title
-					>
+					> -->
 					<v-divider class="mx-4" inset vertical></v-divider>
 					<v-spacer></v-spacer>
 
@@ -41,8 +54,12 @@
 				<!-- <v-icon small class="mr-2" @click="editItem(item)">
 					mdi-pencil
 				</v-icon> -->
-				<v-btn small :to="`./blog/${item.id}/edit`" class="mr-2 warning"
-					nuxt>Edit</v-btn
+				<v-btn
+					small
+					:to="`./blog/${item.id}/edit`"
+					class="mr-2 warning"
+					nuxt
+					>Edit</v-btn
 				>
 				<v-btn small @click="deleteBlog(item)" class="mr-2 error"
 					>Delete</v-btn
@@ -69,6 +86,7 @@
 
 		data() {
 			return {
+				search: "",
 				showDialog: false,
 				headers: [
 					{

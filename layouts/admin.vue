@@ -54,8 +54,11 @@
 				{ title: "Users", icon: "mdi-account", to: "/admin/user" },
 				{ title: "Admins", icon: "mdi-account-supervisor", to: "/admin/admin-user" },
 				{ title: "Course", icon: "mdi-video", to: "/admin/course" },
-				// { title: "Chapter", icon: "mdi-book", to: "/admin/chapter" }
 				{ title: "Blog", icon: "mdi-book", to: "/admin/blog" },
+				{ title: "Assignment", icon: "mdi-book", to: "/admin/assignment" },
+				{ title: "Exams", icon: "mdi-book", to: "/admin/exam" },
+				{ title: "Coupon", icon: "mdi-book", to: "/admin/coupon" },
+				{ title: "Reviews", icon: "mdi-book", to: "/admin/review" },
 			],
 		}),
 	};

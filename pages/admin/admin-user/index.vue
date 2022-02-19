@@ -1,51 +1,27 @@
 <template>
 	<v-container fluid>
+		<v-card>
+			<v-card-title>
+				All Admin Users
+				<v-spacer></v-spacer>
+				<v-text-field
+					v-model="search"
+					append-icon="mdi-magnify"
+					label="Search Users"
+					single-line
+					hide-details
+				></v-text-field>
+			</v-card-title>
+		</v-card>
+
 		<div id="instructor">
 			<v-data-table
+				:search="search"
 				:headers="headers"
 				:items="users"
 				:items-per-page="10"
-				class="mt-10 elevation-3"
+				class="mt-5 elevation-3"
 			>
-				<template v-slot:top>
-					<v-toolbar flat>
-						<v-toolbar-title
-							class="display-1 text-decoration-underline"
-							>All Instructors</v-toolbar-title
-						>
-						<v-divider class="mx-4" inset vertical></v-divider>
-						<v-spacer></v-spacer>
-						<!-- <v-btn
-							@click="showDialog = !showDialog"
-							class="success"
-							>Add Course</v-btn
-						> -->
-						<v-dialog v-model="dialogDelete" max-width="500px">
-							<v-card>
-								<v-card-title class="text-h5"
-									>Are you sure you want to delete this
-									item?</v-card-title
-								>
-								<v-card-actions>
-									<v-spacer></v-spacer>
-									<v-btn
-										color="blue darken-1"
-										text
-										@click="closeDelete"
-										>Cancel</v-btn
-									>
-									<v-btn
-										color="blue darken-1"
-										text
-										@click="deleteItemConfirm"
-										>OK</v-btn
-									>
-									<v-spacer></v-spacer>
-								</v-card-actions>
-							</v-card>
-						</v-dialog>
-					</v-toolbar>
-				</template>
 				<template v-slot:item.actions="{ item }">
 					<!-- <v-btn small class="mr-2 warning">Edit</v-btn> -->
 					<v-btn small @click="deleteUser(item)" class="mr-2 error"
@@ -73,6 +49,7 @@
 
 		data() {
 			return {
+				search: "",
 				showDialog: false,
 				headers: [
 					{
