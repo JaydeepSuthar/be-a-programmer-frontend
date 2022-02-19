@@ -1,4 +1,4 @@
-
+import { getData } from '@/utils/get-data';
 
 export const state = () => ({
 	courses: [],
@@ -17,11 +17,3 @@ export const actions = {
 		commit('SET_COURSES', courses);
 	}
 }
-
-const getData = async (url, axios) => {
-	let response = await axios.get(url);
-
-	return {
-		data: response.data
-	};
-};

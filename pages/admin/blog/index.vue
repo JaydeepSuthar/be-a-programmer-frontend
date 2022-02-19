@@ -73,15 +73,18 @@
 
 
 <script>
+	import { mapState } from 'vuex';
+
 	export default {
 		layout: "admin",
-		async asyncData({ $axios, store }) {
-			let response = await $axios.get(`/blog`);
-			let blogs = await response.data.data;
+		async fetch({ store }) {
+			await store.dispatch('blogs/loadAllBlogs');
+		},
 
-			return {
-				blogs,
-			};
+		computed: {
+			...mapState({
+				blogs: (state) => state.blogs.blogs,
+			}),
 		},
 
 		data() {
@@ -103,7 +106,6 @@
 					// { text: "Duration(in Months)", value: "duration" },
 					// { text: "Price", value: "price" },
 				],
-				blogs: [],
 			};
 		},
 		methods: {

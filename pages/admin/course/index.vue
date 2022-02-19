@@ -39,7 +39,13 @@
 				<!-- <v-icon small class="mr-2" @click="editItem(item)">
 					mdi-pencil
 				</v-icon> -->
-				<v-btn small :to="`/admin/course/${item.id}/edit`" class="mr-2 warning" nuxt>Edit</v-btn>
+				<v-btn
+					small
+					:to="`/admin/course/${item.id}/edit`"
+					class="mr-2 warning"
+					nuxt
+					>Edit</v-btn
+				>
 				<v-btn small @click="deleteCourse(item)" class="mr-2 error"
 					>Delete</v-btn
 				>
@@ -53,10 +59,12 @@
 
 
 <script>
+	import { mapState } from "vuex";
+
 	export default {
 		layout: "admin",
-		async fetch ({ store }) {
-			await store.dispatch('courses/loadAllCourses');
+		async fetch({ store }) {
+			await store.dispatch("courses/loadAllCourses");
 		},
 
 		data() {
@@ -77,7 +85,6 @@
 					{ text: "Instructor", value: "admin.name" },
 					{ text: "Actions", value: "actions", sortable: false },
 				],
-				courses: [],
 			};
 		},
 		methods: {
@@ -112,6 +119,11 @@
 					}
 				}
 			},
+		},
+		computed: {
+			...mapState({
+				courses: (state) => state.courses.courses,
+			}),
 		},
 	};
 </script>
