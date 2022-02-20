@@ -52,7 +52,7 @@
 			v-for="(snackbar, index) in snackbars.filter((s) => s.showing)"
 			:key="snackbar.text + Math.random()"
 			v-model="snackbar.showing"
-			:timeout="5000"
+			:timeout="1000"
 			:color="snackbar.color"
 			:style="`bottom: ${index * 60 + 8}px`"
 		>

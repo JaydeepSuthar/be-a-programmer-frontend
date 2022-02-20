@@ -1,8 +1,32 @@
 <template>
 	<div>
 		<v-card>
-			<h2 v-if="chapters[0] == null">No Data Found</h2>
+			<CreateChapterDialog
+				:chapters="chapters"
+				:dialog="showCreateDialog"
+				@closeDialog="showCreateDialog = !showCreateDialog"
+			/>
+			<UpdateChapterDialog
+				:dialog="showUpdateDialog"
+				:chapterId="chapterId"
+				@closeDialog="showUpdateDialog = !showUpdateDialog"
+			/>
+			<v-card-title>
+				All Chapters
+				<v-spacer></v-spacer>
+				<v-text-field
+					v-model="search"
+					append-icon="mdi-magnify"
+					label="Search Course"
+					single-line
+					hide-details
+				></v-text-field>
+			</v-card-title>
+		</v-card>
+
+		<v-card>
 			<v-data-table
+				:search="search"
 				:headers="headers"
 				:items="chapters"
 				:items-per-page="5"
@@ -10,44 +34,36 @@
 			>
 				<template v-slot:top>
 					<v-toolbar flat>
-						<v-toolbar-title
-							class="display-1 text-decoration-underline"
-							>All Chapters</v-toolbar-title
-						>
 						<v-divider class="mx-4" inset vertical></v-divider>
 						<v-spacer></v-spacer>
 
 						<v-btn
-							@click="showDialog = !showDialog"
 							class="success"
-							>Add Chapter</v-btn
+							@click="showCreateDialog = !showCreateDialog"
+							>Add Chapters</v-btn
 						>
-
-						<v-dialog v-model="dialogDelete" max-width="500px">
-							<v-card>
-								<v-card-title class="text-h5"
-									>Are you sure you want to delete this
-									item?</v-card-title
-								>
-								<v-card-actions>
-									<v-spacer></v-spacer>
-									<v-btn
-										color="blue darken-1"
-										text
-										@click="closeDelete"
-										>Cancel</v-btn
-									>
-									<v-btn
-										color="blue darken-1"
-										text
-										@click="deleteItemConfirm"
-										>OK</v-btn
-									>
-									<v-spacer></v-spacer>
-								</v-card-actions>
-							</v-card>
-						</v-dialog>
 					</v-toolbar>
+				</template>
+
+				<template v-slot:item.actions="{ item }">
+					<v-btn
+						x-small
+						class="mr-2 warning"
+						@click="editChapter(item)"
+						>Edit</v-btn
+					>
+					<v-btn
+						x-small
+						@click="deleteChapter(item)"
+						class="mr-2 error"
+						>Delete</v-btn
+					>
+					<!-- <v-btn x-small class="info" @click="showVideos(item)"
+						>Videos</v-btn
+					>
+					<v-btn x-small class="info" @click="addAssignment(item)"
+						>Assignment</v-btn
+					> -->
 				</template>
 			</v-data-table>
 		</v-card>
@@ -55,33 +71,58 @@
 </template>
 
 <script>
+	import { mapState } from "vuex";
+
 	export default {
 		layout: "admin",
-		async asyncData({ params, $axios }) {
-			console.log(params.id);
-			const response = await $axios(`/chapter/${params.id}`);
-			const chapters = await response.data.data;
-			return {
-				chapters,
-			};
+		async fetch({ params, store }) {
+			await store.dispatch("chapters/loadAllChapters", params.id);
 		},
 		data() {
 			return {
+				search: "",
+				showCreateDialog: false,
+				showUpdateDialog: false,
+				chapterId: null,
 				headers: [
-					{ text: "Sr No.", value: "srno" },
+					// ! uncomment it later
+					// { text: "Sr No.", value: "srno" },
 					{
 						text: "Name",
-						// align: "start",
+						align: "start",
 						sortable: false,
 						value: "chapter_name",
 					},
-					{ text: "Videos", value: "videos" },
-					{ text: "Assignment", value: "assignments" },
+					{ text: "No. of Videos", value: "_count.videos" },
+					{ text: "No. of Assignment", value: "_count.assignments" },
 					{ text: "is_active", value: "is_visible" },
-					// { text: "Actions", value: "actions", sortable: false },
+					{ text: "Actions", value: "actions", sortable: false },
 				],
-				chapters: [],
 			};
+		},
+		methods: {
+			async deleteChapter(chapter) {
+				console.table(chapter);
+				let confirmation = confirm(
+					`Are you sure you want to delete ${chapter.chapter_name}`
+				);
+
+				if (confirmation) {
+					this.$store.dispatch("chapters/delete", chapter);
+					this.$store.dispatch("snackbar/setSnackbar", {
+						text: `You have successfully deleted your chapter, ${chapter.chapter_name}.`,
+					});
+				}
+			},
+			editChapter (chapter) {
+				this.chapterId = chapter.id;
+				this.showUpdateDialog = !this.showUpdateDialog;
+			}
+		},
+		computed: {
+			...mapState({
+				chapters: (state) => state.chapters.chapters,
+			}),
 		},
 	};
 </script>

@@ -1,21 +1,21 @@
 <template>
 	<v-container>
-		<VideoEditForm
+		<!-- <VideoEditForm
 			:video="video"
 			:saveVideo="saveVideo"
 			buttonText="Save Video"
-		/>
+		/> -->
 	</v-container>
 </template>
 
 
 <script>
 	import { mapState, mapGetters } from 'vuex'
-	import VideoEditForm from '@/components/VideoEditForm.vue'
+	// import VideoEditForm from '@/components/VideoEditForm.vue'
 
 	export default {
 		components: {
-			VideoEditForm,
+			// VideoEditForm,
 		},
 		computed: {
 			...mapState({
