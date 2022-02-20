@@ -2,7 +2,8 @@ export default ({ $axios, redirect, app }, inject) => {
 	$axios.onError((error) => {
 		if (error.response === undefined) {
 			// Display a flash notification
-			app.notify({
+			console.log({
+				error: error,
 				title: 'Network Error: Please refresh and try again.',
 				type: 'error',
 				duration: -1,

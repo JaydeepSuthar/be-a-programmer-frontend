@@ -66,7 +66,6 @@
 		async fetch({ store }) {
 			await store.dispatch("courses/loadAllCourses");
 		},
-
 		data() {
 			return {
 				search: "",
@@ -103,20 +102,8 @@
 				);
 
 				if (confirmation) {
-					const response = await this.$axios.delete(
-						`/course/remove/${course.id}`
-					);
-
-					if (response.data.is_success === true) {
-						alert(response.data.msg);
-
-						this.$store.dispatch("snackbar/setSnackbar", {
-							text: `You have successfully deleted your course, ${course.title}.`,
-						});
-
-						// TODO: NOT THE MOST EFFECIENT WAY
-						this.$nuxt.refresh();
-					}
+					this.$store.dispatch('courses/delete', course);
+					this.$store.dispatch('snackbar/setSnackbar', {text: `You have successfully deleted your course, ${course.title}.`});
 				}
 			},
 		},

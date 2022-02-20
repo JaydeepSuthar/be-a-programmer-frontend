@@ -13,7 +13,13 @@
 			</v-sheet>
 
 			<v-list dense nav>
-				<v-list-item v-for="item in items" :key="item.title" :to="item.to" exact link>
+				<v-list-item
+					v-for="item in items"
+					:key="item.title"
+					:to="item.to"
+					exact
+					link
+				>
 					<v-list-item-icon>
 						<v-icon>{{ item.icon }}</v-icon>
 					</v-list-item-icon>
@@ -41,10 +47,24 @@
 				<Nuxt />
 			</v-container>
 		</v-main>
+
+		<v-snackbar
+			v-for="(snackbar, index) in snackbars.filter((s) => s.showing)"
+			:key="snackbar.text + Math.random()"
+			v-model="snackbar.showing"
+			:timeout="5000"
+			:color="snackbar.color"
+			:style="`bottom: ${index * 60 + 8}px`"
+		>
+			{{ snackbar.text }}
+
+			<v-btn text @click="snackbar.showing = false"> Close </v-btn>
+		</v-snackbar>
 	</v-app>
 </template>
 
 <script>
+	import { mapState } from "vuex";
 	export default {
 		name: "admin",
 		data: () => ({
@@ -52,7 +72,11 @@
 			items: [
 				{ title: "Dashboard", icon: "mdi-view-dashboard", to: "/admin" },
 				{ title: "Users", icon: "mdi-account", to: "/admin/user" },
-				{ title: "Admins", icon: "mdi-account-supervisor", to: "/admin/admin-user" },
+				{
+					title: "Admins",
+					icon: "mdi-account-supervisor",
+					to: "/admin/admin-user",
+				},
 				{ title: "Course", icon: "mdi-video", to: "/admin/course" },
 				{ title: "Blog", icon: "mdi-book", to: "/admin/blog" },
 				{ title: "Assignment", icon: "mdi-book", to: "/admin/assignment" },
@@ -61,5 +85,10 @@
 				{ title: "Reviews", icon: "mdi-book", to: "/admin/review" },
 			],
 		}),
+		computed: {
+			...mapState({
+				snackbars: (state) => state.snackbar.snackbars,
+			}),
+		},
 	};
 </script>

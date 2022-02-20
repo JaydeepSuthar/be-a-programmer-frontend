@@ -5,8 +5,7 @@ export default async function ({ store, from }) {
 
 	if (isIntialPageLoad) {
 		await RSVP.all([
-			store.dispatch('courses/loadAll'),
-			// store.dispatch('loadAll'),
+			store.dispatch('courses/loadAllCourses'),
 		])
 	}
 }
