@@ -58,10 +58,10 @@
 						class="mr-2 error"
 						>Delete</v-btn
 					>
-					<!-- <v-btn x-small class="info" @click="showVideos(item)"
+					<v-btn x-small :to="`./chapter/${item.id}/videos`" class="info" nuxt
 						>Videos</v-btn
 					>
-					<v-btn x-small class="info" @click="addAssignment(item)"
+					<!-- <v-btn x-small class="info" @click="addAssignment(item)"
 						>Assignment</v-btn
 					> -->
 				</template>

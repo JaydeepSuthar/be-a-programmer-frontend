@@ -60,5 +60,10 @@ export const actions = {
 export const getters = {
 	get: state => id => {
 		return state.chapters.find(v => v.id == id) || {};
-	}
+	},
+
+	getAllChapterName: state => () => {
+		return state.chapters.map(c => c.chapter_name);
+	},
+
 };

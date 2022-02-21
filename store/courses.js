@@ -62,6 +62,14 @@ export const getters = {
 		return state.courses.find(v => v.id == id) || {};
 	},
 
+	getAllCourseName: state => () => {
+		return state.courses.map(c => c.title);
+	},
+
+	getCourseId: state => (course_name) => {
+		return state.courses.find(c => c.title === course_name);
+	},
+
 	getCourseByName: state => title => {
 		return state.courses.find(v => v.title == title)
 	}

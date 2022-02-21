@@ -1,7 +1,7 @@
 <template>
 	<v-container fluid>
 		<!-- <v-row> -->
-		<v-form @submit.prevent="submitBlog">
+		<v-form ref="form" @submit.prevent="submitBlog">
 			<v-text-field
 				v-model="blog.title"
 				label="Blog Title"
@@ -9,6 +9,12 @@
 				autofocus
 				outlined
 				full-width
+				:rules="[
+					required('Title'),
+					minLength('Title', 5),
+					maxLength('Title', 50),
+				]"
+				counter="50"
 			></v-text-field>
 
 			<v-text-field
@@ -17,7 +23,12 @@
 				placeholder="Enter Slug Here"
 				outlined
 				full-width
-				counter="15"
+				counter="24"
+				:rules="[
+					required('Slug'),
+					minLength('Slug', 5),
+					maxLength('Slug', 24),
+				]"
 			></v-text-field>
 
 			<v-textarea
@@ -27,6 +38,12 @@
 				outlined
 				full-width
 				rows="10"
+				counter="2500"
+				:rules="[
+					required('Body'),
+					minLength('Body', 5),
+					maxLength('Body', 2500),
+				]"
 			></v-textarea>
 
 			<!-- <v-file-input
@@ -35,25 +52,31 @@
 				prepend-icon="mdi-camera"
 			></v-file-input> -->
 
-			<v-text-field
+			<!-- <v-text-field
 				v-model="blog.author"
 				:value="blog.author"
 				label="Author"
 				outlined
 				full-width
 				readonly
-			></v-text-field>
+			></v-text-field> -->
 
 			<v-btn type="submit" block large class="success">Save</v-btn>
+			<v-btn class="mt-5" @click="fillForm">Generate mock data</v-btn>
 		</v-form>
 	</v-container>
 </template>
 
 <script>
+	import validation from "@/utils/validations";
+	import faker from "faker";
+	import { mapState } from "vuex";
+
 	export default {
 		layout: "admin",
 		data() {
 			return {
+				...validation,
 				blog: {
 					title: "",
 					slug: "",
@@ -64,13 +87,55 @@
 		},
 		methods: {
 			async submitBlog() {
-				const response = await this.$axios.post("/blog/add", this.blog);
-
-				if (true) {
-					console.log(`new blog created`);
+				if (this.$refs.form.validate()) {
+					if (this.blogAlreadyExists() === true) {
+						alert("Blog Already Exists");
+					} else {
+						try {
+							const response = await this.$axios.post(
+								"/blog/add",
+								this.blog
+							);
+							if (response.status == 200 || response.status == 204) {
+								this.$store.dispatch("snackbar/setSnackbar", {
+									text: `You have successfully created blog`,
+								});
+								this.$router.push(`/admin/blog`);
+							}
+						} catch ({ response }) {
+							alert(response.data.msg);
+						}
+					}
 				}
-				this.$router.push(`/admin/blog`);
 			},
+
+			fillForm() {
+				const mockBlogData = {
+					title: faker.name.title(),
+					slug: faker.lorem.slug(),
+					body: faker.lorem.sentence(),
+				};
+
+				this.blog = mockBlogData;
+			},
+
+			blogAlreadyExists() {
+				for (let i = 0; i < this.allBlogs.length; i++) {
+					if (
+						this.allBlogs[i].title.toLowerCase() ==
+							this.blog.title.toLowerCase() ||
+						this.allBlogs[i].slug.toLowerCase() == this.blog.slug.toLowerCase()
+					) {
+						return true;
+					}
+				}
+				return `Nothing`;
+			},
+		},
+		computed: {
+			...mapState({
+				allBlogs: (state) => state.blogs.blogs,
+			}),
 		},
 	};
 </script>

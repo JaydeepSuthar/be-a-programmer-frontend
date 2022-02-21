@@ -31,22 +31,6 @@
 
 					<v-btn class="success" to="./blog/new" nuxt>Add Blog</v-btn>
 
-					<v-dialog v-model="dialogDelete" max-width="500px">
-						<v-card>
-							<v-card-title class="text-h5"
-								>Are you sure you want to delete this
-								item?</v-card-title
-							>
-							<v-card-actions>
-								<v-spacer></v-spacer>
-								<v-btn color="blue darken-1" text>Cancel</v-btn>
-								<!-- @click="closeDelete" -->
-								<v-btn color="blue darken-1" text>OK</v-btn>
-								<!-- @click="deleteItemConfirm" -->
-								<v-spacer></v-spacer>
-							</v-card-actions>
-						</v-card>
-					</v-dialog>
 				</v-toolbar>
 			</template>
 			<!-- eslint-ignore-next-line -->
@@ -99,8 +83,8 @@
 						value: "title",
 					},
 					{ text: "Slug", value: "slug" },
-					{ text: "Is_active", value: "is_active" },
-					{ text: "Tags", value: "tags" },
+					// { text: "Is_active", value: "is_active" },
+					// { text: "Tags", value: "tags" },
 					{ text: "Author", value: "admin.name" },
 					{ text: "Actions", value: "actions", sortable: false },
 					// { text: "Duration(in Months)", value: "duration" },

@@ -173,7 +173,7 @@
 					if (
 						this.allCourses[i].title.toLowerCase() ==
 							this.course.title.toLowerCase() ||
-						this.allCourses[i].slug == this.course.slug
+						this.allCourses[i].slug.toLowerCase() == this.course.slug.toLowerCase()
 					) {
 						return true;
 					}
