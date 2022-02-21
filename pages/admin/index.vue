@@ -1,15 +1,32 @@
 <template>
 	<v-container class="d-flex flex-column pa-2">
-		<h2 class="text-center mt-10 mb-10">Dashboard</h2>
+		<h2 class="display-2 text-center mt-10 mb-10">Dashboard</h2>
 
-		<v-card
-			class="d-flex flex-column justify-center align-center cyan darken-1"
-			max-width="20rem"
-			height="15rem"
-		>
-			<p class="white--text display-4 font-weight-bold">{{ users }}</p>
-			<p class="white--text">Total No. Registered Users</p>
-		</v-card>
+		<div class="card-wrapper justify-center">
+			<DashboardCard
+				id="total-user"
+				:primaryText="users"
+				subText="Registered Users"
+			/>
+			<DashboardCard
+				id="total-instructor"
+				:primaryText="instructors"
+				subText="Instructors"
+				color="#00796B"
+			/>
+			<DashboardCard
+				id="total-course"
+				:primaryText="courses"
+				subText="Courses"
+				color="#00C853"
+			/>
+			<DashboardCard
+				id="total-blog"
+				:primaryText="blogs"
+				subText="Blogs"
+				color="#512DA8"
+			/>
+		</div>
 	</v-container>
 </template>
 
@@ -17,12 +34,20 @@
 	export default {
 		layout: "admin",
 		async asyncData({ $axios }) {
-			let response = await $axios.get("/user/all/count");
-			let users = response.data.data;
-			console.log(users);
+			let response = await $axios.get("/misc/stats");
+			let allStats = response.data.stats;
+			console.log(allStats);
 			return {
-				users,
+				...allStats,
 			};
 		},
 	};
 </script>
+
+<style lang="scss" scoped>
+	.card-wrapper {
+	 	display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+</style>
