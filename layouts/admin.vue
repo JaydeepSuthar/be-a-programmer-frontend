@@ -47,47 +47,34 @@
 				<Nuxt />
 			</v-container>
 		</v-main>
-
-		<v-snackbar
-			v-for="(snackbar, index) in snackbars.filter((s) => s.showing)"
-			:key="snackbar.text + Math.random()"
-			v-model="snackbar.showing"
-			:timeout="1000"
-			:color="snackbar.color"
-			:style="`bottom: ${index * 60 + 8}px`"
-		>
-			{{ snackbar.text }}
-
-			<v-btn text @click="snackbar.showing = false"> Close </v-btn>
-		</v-snackbar>
 	</v-app>
 </template>
 
 <script>
-	import { mapState } from "vuex";
-	export default {
-		name: "admin",
-		data: () => ({
-			drawer: true,
-			items: [
-				{ title: "Dashboard", icon: "mdi-view-dashboard", to: "/admin" },
-				{ title: "Users", icon: "mdi-account", to: "/admin/user" },
-				{
-					title: "Instructor",
-					icon: "mdi-account-supervisor",
-					to: "/admin/admin-user",
-				},
-				{ title: "Course", icon: "mdi-video", to: "/admin/course" },
-				{ title: "Blog", icon: "mdi-book", to: "/admin/blog" },
-				{ title: "Exam", icon: "mdi-gavel", to: "/admin/exam" },
-				// { title: "Assigment", icon: "mdi-wrench", to: "/admin/assignment" },
-				// { title: "Coupon", icon: "mdi-widgets", to: "/admin/coupon" },
-			],
+import { mapState } from "vuex";
+export default {
+	name: "admin",
+	data: () => ({
+		drawer: true,
+		items: [
+			{ title: "Dashboard", icon: "mdi-view-dashboard", to: "/admin" },
+			{ title: "Users", icon: "mdi-account", to: "/admin/user" },
+			{
+				title: "Instructor",
+				icon: "mdi-account-supervisor",
+				to: "/admin/admin-user",
+			},
+			{ title: "Course", icon: "mdi-video", to: "/admin/course" },
+			{ title: "Blog", icon: "mdi-book", to: "/admin/blog" },
+			{ title: "Exam", icon: "mdi-gavel", to: "/admin/exam" },
+			{ title: "Assigment", icon: "mdi-wrench", to: "/admin/assignment" },
+			{ title: "Coupon", icon: "mdi-widgets", to: "/admin/coupon" },
+		],
+	}),
+	computed: {
+		...mapState({
+			snackbars: (state) => state.snackbar.snackbars,
 		}),
-		computed: {
-			...mapState({
-				snackbars: (state) => state.snackbar.snackbars,
-			}),
-		},
-	};
+	},
+};
 </script>

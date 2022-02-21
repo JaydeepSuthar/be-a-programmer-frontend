@@ -107,22 +107,22 @@
 					`Are you sure you want to delete ${exam.exam_name}`
 				);
 
-				console.log(exam);
+				// console.log(exam);
 
-				// if (confirmation) {
-				// 	const response = await this.$axios.delete(
-				// 		`/course/exams/delete/${exam.id}`
-				// 	);
+				if (confirmation) {
+					const response = await this.$axios.delete(
+						`/course/exams/delete/${exam.id}`
+					);
 
-				// 	console.log(`Exam Deleted Successfully: ${response.data}`);
+					console.log(`Exam Deleted Successfully: ${response.data}`);
 
-				// 	this.$store.dispatch("snackbar/setSnackbar", {
-				// 		text: `You have successfully deleted your Exam, ${exam.title}.`,
-				// 	});
+					this.$store.dispatch("snackbar/setSnackbar", {
+						text: `You have successfully deleted your Exam, ${exam.title}.`,
+					});
 
-				// 	// TODO: NOT THE MOST EFFECIENT WAY
-				// 	this.$nuxt.refresh();
-				// }
+					// TODO: NOT THE MOST EFFECIENT WAY
+					this.$nuxt.refresh();
+				}
 			},
 		},
 	};
