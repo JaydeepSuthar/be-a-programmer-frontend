@@ -1,53 +1,108 @@
 <template>
-	<v-container class="d-flex flex-column pa-2">
-		<h2 class="display-2 text-center mt-10 mb-10">Dashboard</h2>
+	<div id="app">
 
-		<div class="card-wrapper justify-center">
-			<DashboardCard
-				id="total-user"
-				:primaryText="users"
-				subText="Registered Users"
-			/>
-			<DashboardCard
-				id="total-instructor"
-				:primaryText="instructors"
-				subText="Instructors"
-				color="#00796B"
-			/>
-			<DashboardCard
-				id="total-course"
-				:primaryText="courses"
-				subText="Courses"
-				color="#00C853"
-			/>
-			<DashboardCard
-				id="total-blog"
-				:primaryText="blogs"
-				subText="Blogs"
-				color="#512DA8"
-			/>
-		</div>
-	</v-container>
+		<v-app>
+			<v-container >
+ <h1 align="center">
+		Sign in to your Account
+		</h1>
+				<v-layout wrap>
+					<v-flex sm12 md6 offset-md3  >
+						<v-card elevation="4" light tag="section">
+								<v-card-text >
+
+								<v-form  @submit.prevent="login">
+									<v-text-field
+										outlined
+										label="Username/E-mail"
+										type="text"
+
+										v-model="login.username"
+									></v-text-field>
+									<v-text-field
+										outlined
+										hide-details
+										label="Password"
+										type="password"
+
+										v-model="login.password"
+									></v-text-field>
+								</v-form>
+							</v-card-text>
+
+							<v-card-actions
+
+							>
+							<v-checkbox label="Remember Me" color="success"></v-checkbox> <v-spacer></v-spacer>
+								<v-btn color="info"  flat>
+									Forgot Your Password?
+								</v-btn>
+								 <v-btn color="info" nuxt to="admin/signup">
+									 Sign Up
+								 </v-btn>
+
+
+
+
+							</v-card-actions>
+							  <v-btn
+									color="success"
+									width="100%"
+									 nuxt to="/admin/home"
+
+
+								>   <v-icon>mdi-lock </v-icon> Login.. but now work without pasword
+							 	</v-btn>
+								<v-card-actions>  </v-card-actions>
+
+
+						</v-card>
+					</v-flex>
+				 </v-layout>
+			</v-container>
+		</v-app>
+	</div>
 </template>
 
+<style scoped>
+
+h1{
+	color: rgb(150, 135, 135);
+}
+</style>
 <script>
-	export default {
-		layout: "admin",
-		async asyncData({ $axios }) {
-			let response = await $axios.get("/misc/stats");
-			let allStats = response.data.stats;
-			console.log(allStats);
+
+export default {
+	layout:"login" ,
+
+data() {
 			return {
-				...allStats,
+
+				login: {
+					username: "",
+					password: "",
+
+
+				},
 			};
-		},
-	};
+},
+methods: {
+			async login() {
+
+		if (response.status === 200 || response.status === 204) {
+						this.$store.dispatch("snackbar/setSnackbar", {
+							text: `You have successfully created exam`,
+						});
+
+						this.$router.push(`/admin`);
+					}
+					else{
+						alert("Wrong credentials");
+					}
+
+				}
+			},
+
+};
 </script>
 
-<style lang="scss" scoped>
-	.card-wrapper {
-	 	display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-	}
-</style>

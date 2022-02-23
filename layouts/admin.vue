@@ -5,9 +5,10 @@
 				<v-avatar
 					id="avatar"
 					class="mb-4"
-					color="grey darken-1"
-					size="64"
-				></v-avatar>
+					size="70"
+
+				> <img src="logo1.png" alt=""/></v-avatar>
+
 
 				<div><h2>Be A Programmer</h2></div>
 			</v-sheet>
@@ -30,7 +31,7 @@
 				</v-list-item>
 			</v-list>
 
-			<v-btn depressed>
+			<v-btn depressed nuxt to= "/admin">
 				<span>Logout</span>
 				<v-icon>mdi-logout</v-icon>
 			</v-btn>
@@ -57,7 +58,7 @@ export default {
 	data: () => ({
 		drawer: true,
 		items: [
-			{ title: "Dashboard", icon: "mdi-view-dashboard", to: "/admin" },
+			{ title: "Dashboard", icon: "mdi-view-dashboard", to: "/admin/home" },
 			{ title: "Users", icon: "mdi-account", to: "/admin/user" },
 			{
 				title: "Instructor",
