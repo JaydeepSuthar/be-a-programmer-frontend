@@ -38,7 +38,7 @@
 	export default {
 		layout: "admin",
 		async asyncData({ $axios, store }) {
-			let response = await $axios.get(`/user/admin/all`);
+			let response = await $axios.get(`/admin/all`);
 			let users = await response.data.data;
 			console.log(response);
 			// store.commit('SET_COURSES', users);
@@ -84,6 +84,7 @@
 
 					this.$store.dispatch("snackbar/setSnackbar", {
 						text: `You have successfully deleted your user, ${user.title}.`,
+						color: 'red'
 					});
 
 					// TODO: NOT THE MOST EFFECIENT WAY

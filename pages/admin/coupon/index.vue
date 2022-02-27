@@ -85,7 +85,7 @@ export default {
 				{ text: "Discount", value: "discount" },
 				// { text: "start", value: "start" },
 				{ text: "end", value: "valid_till" },
-				{ text: "Actions", value: "actions", sortable: false },
+				// { text: "Actions", value: "actions", sortable: false },
 			],
 			coupon: [],
 		};

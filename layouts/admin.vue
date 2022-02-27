@@ -81,7 +81,6 @@
 				{ title: "Course", icon: "mdi-video", to: "/admin/course" },
 				{ title: "Blog", icon: "mdi-book", to: "/admin/blog" },
 				{ title: "Exam", icon: "mdi-gavel", to: "/admin/exam" },
-				{ title: "Assigment", icon: "mdi-wrench", to: "/admin/assignment" },
 				{ title: "Coupon", icon: "mdi-widgets", to: "/admin/coupon" },
 			],
 		}),

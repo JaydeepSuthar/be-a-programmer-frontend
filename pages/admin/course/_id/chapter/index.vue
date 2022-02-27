@@ -61,6 +61,9 @@
 					<v-btn x-small :to="`./chapter/${item.id}/videos`" class="info" nuxt
 						>Videos</v-btn
 					>
+					<v-btn x-small :to="`./chapter/${item.id}/assignment`" class="info" nuxt
+						>Assignments</v-btn
+					>
 					<!-- <v-btn x-small class="info" @click="addAssignment(item)"
 						>Assignment</v-btn
 					> -->

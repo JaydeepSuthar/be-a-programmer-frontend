@@ -11,14 +11,6 @@
 				full-width
 			></v-text-field>
 
-			<!-- <v-text-field
-				v-model="coupon.item"
-				label="Courese Name"
-				placeholder="Enter CourseName You Wish to discount on"
-				autofocus
-				outlined
-				full-width
-			></v-text-field> -->
 			<v-text-field
 				v-model="coupon.discount"
 				label="Discount in (%)"
@@ -51,7 +43,8 @@
 
 			<v-date-picker
 				v-model="coupon.endpicker"
-				label="Start From"
+				label="End Date"
+				:min="new Date().toISOString().substr(0, 10)"
 				color="green lighten-1"
 			></v-date-picker>
 

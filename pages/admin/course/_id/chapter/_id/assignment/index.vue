@@ -1,5 +1,5 @@
 <template>
-	<div id="blog">
+	<div id="assignment">
 		<v-card>
 			<v-card-title>
 				All Assignment
@@ -7,8 +7,7 @@
 				<v-text-field
 					v-model="search"
 					append-icon="mdi-magnify"
-					label="Search Assignment
-			"
+					label="Search Assignment"
 					single-line
 					hide-details
 				></v-text-field>
@@ -18,14 +17,14 @@
 		<v-data-table
 			:search="search"
 			:headers="headers"
-			:items="Assignment"
+			:items="assignments"
 			:items-per-page="10"
 			class="mt-5 elevation-3"
 		>
 			<template v-slot:top>
 				<v-toolbar flat>
 					<!-- <v-toolbar-title class="display-1 text-decoration-underline"
-						>All Blogs</v-toolbar-title
+						>All assignments</v-toolbar-title
 					> -->
 					<v-divider class="mx-4" inset vertical></v-divider>
 					<v-spacer></v-spacer>
@@ -56,7 +55,7 @@
 			<template v-slot:item.actions="{ item }">
 				<v-btn
 					small
-					:to="`./blog/${item.id}/edit`"
+					:to="`./assignment/${item.id}/edit`"
 					class="mr-2 warning"
 					nuxt
 				>
@@ -64,7 +63,7 @@
 						mdi-pencil </v-icon
 					>Edit</v-btn
 				>
-				<v-btn small @click="deleteBlog(item)" class="mr-2 error">
+				<v-btn small @click="deleteassignment(item)" class="mr-2 error">
 					<v-icon small @click="deleteItem(item)"> mdi-delete </v-icon
 					>Delete</v-btn
 				>
@@ -77,12 +76,12 @@
 <script>
 export default {
 	layout: "admin",
-	async asyncData({ $axios, store }) {
-		let response = await $axios.get(`/blog`);
-		let blogs = await response.data.data;
+	async asyncData({ $axios, store, params }) {
+		let response = await $axios.get(`/misc/assignment/${params.id}`);
+		let assignments = await response.data.data;
 
 		return {
-			blogs,
+			assignments,
 		};
 	},
 
@@ -91,20 +90,10 @@ export default {
 			search: "",
 			showDialog: false,
 			headers: [
-				{
-					text: "Title",
-					align: "start",
-					sortable: false,
-					value: "title",
-				},
-
-				{ text: "file", value: "file" },
-				{ text: "Body", value: "Body" },
-				{ text: "Is_active", value: "is_active" },
-				{ text: "Author", value: "admin.name" },
+				{ text: "src", value: "src" },
+				{ text: "Is_active", value: "is_visible" },
 				{ text: "Actions", value: "actions", sortable: false },
 			],
-			Assignments: [],
 		};
 	},
 	methods: {
@@ -112,11 +101,11 @@ export default {
 			this.showDialog = value;
 		},
 
-		async editBlog(Assignments) {
+		async editassignment(Assignments) {
 			console.log(`Assignment Edit Successfully: ${Assignments.id}`);
 		},
 
-		async deleteBlog(Assignments) {
+		async deleteassignment(Assignments) {
 			let confirmation = confirm(
 				`Are you sure you want to delete ${Assignments.title}`
 			);
