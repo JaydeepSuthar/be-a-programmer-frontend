@@ -27,6 +27,8 @@
 				color="#512DA8"
 			/>
 		</div>
+
+		<v-btn color="success" outlined small @click="getAdminSecret">Get Secret</v-btn>
 	</v-container>
 </template>
 
@@ -41,6 +43,13 @@
 				...allStats,
 			};
 		},
+
+		methods: {
+			async getAdminSecret() {
+				let secret = await this.$axios.get('/admin/secret');
+				console.log(secret);
+			}
+		}
 	};
 </script>
 

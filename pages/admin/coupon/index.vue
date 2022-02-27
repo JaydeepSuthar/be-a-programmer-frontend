@@ -47,10 +47,10 @@
 						mdi-pencil </v-icon
 					>Edit</v-btn
 				>
-				<v-btn small @click="deleteBlog(item)" class="mr-2 error">
+				<!-- <v-btn small @click="deleteBlog(item)" class="mr-2 error">
 					<v-icon small @click="deleteItem(item)"> mdi-delete </v-icon
 					>Delete</v-btn
-				>
+				> -->
 				<!-- <v-btn small class="info" @click="showChapter(item)">Chapters</v-btn> -->
 			</template>
 		</v-data-table>
@@ -62,9 +62,8 @@ export default {
 	layout: "admin",
 	async asyncData({ $axios, store }) {
 		// FIXME:
-		let response = await $axios.get(`/course/coupon`);
-		let coupon = await response.data;
-		console.log(coupon);
+		let response = await $axios(`/course/coupon`);
+		let coupon = await response.data.data;
 		return {
 			coupon,
 		};
@@ -79,16 +78,13 @@ export default {
 					text: "Title",
 					align: "start",
 					sortable: false,
-					value: "title",
+					value: "coupon_title",
 				},
 
-				// { text: "Course", value: "course" },
+				{ text: "Coupon Code", value: "coupon_code" },
 				{ text: "Discount", value: "discount" },
-				{ text: "Code", value: "code" },
 				// { text: "start", value: "start" },
-				{ text: "end", value: "end" },
-				{ text: "Is_active", value: "is_active" },
-				// { text: "Author", value: "admin.name" },
+				{ text: "end", value: "valid_till" },
 				{ text: "Actions", value: "actions", sortable: false },
 			],
 			coupon: [],

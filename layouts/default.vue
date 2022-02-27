@@ -45,6 +45,15 @@
 			<v-btn icon @click.stop="rightDrawer = !rightDrawer">
 				<v-icon>mdi-menu</v-icon>
 			</v-btn>
+
+			<!-- <div v-if="$auth.loggedIn">
+				<p>{{ $auth.user.email }}</p>
+				<v-btn @click="() => this.$auth.logout()">Logout</v-btn>
+			</div>
+			<div v-else>
+				<v-btn>Login</v-btn>
+				<v-btn>Register</v-btn>
+			</div> -->
 		</v-app-bar>
 		<v-main>
 			<Nuxt />

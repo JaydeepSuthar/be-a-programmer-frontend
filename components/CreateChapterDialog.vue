@@ -116,7 +116,7 @@
 
 		computed: {
 			lastSrNo() {
-				let lastChapterIndex = this.chapters.length;
+				let lastChapterIndex = this.chapters.length || 2;
 				return parseInt(this.chapters[lastChapterIndex - 1].srno);
 			},
 		},

@@ -13,15 +13,15 @@
 		name: "DashboardCard",
 		props: {
 			primaryText: {
-				type: String,
+				type: [Number, String],
 				default: "0",
 			},
 			subText: {
-				type: String,
+				type: [Number, String],
 				default: "Sub Text",
 			},
 			color: {
-				type: String,
+				type: [Number, String],
 				default: "#0097A7",
 			},
 		},
@@ -30,7 +30,7 @@
 
 <style scoped>
 	.card {
-		height: 5rem;
+		height: 15rem;
 		width: 20rem;
 		display: inline-block;
 		margin: 10px;

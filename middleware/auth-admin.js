@@ -1,11 +1,13 @@
 export default async function ({ $auth, redirect, store }) {
-	let user = $auth.user;
 
-	if (user && user.role == 'student') {
+	let user = $auth.$storage.getUniversal('user');
+
+	console.log(user);
+
+	if (user && !(user.role === 'student')) {
 		// let user in
-		redirect('/courses')
 	} else {
-		store.dispatch('snackbar/setSnackbar', { color: 'error', text: 'You must be an admin to visit this page' })
-		redirect('/')
+		redirect('/');
+		alert('You are not allowed');
 	}
 }

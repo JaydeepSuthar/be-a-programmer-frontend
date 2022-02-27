@@ -32,7 +32,6 @@ export default {
 	buildModules: [
 		// https://go.nuxtjs.dev/vuetify
 		'@nuxtjs/vuetify',
-
 		'nuxt-esbuild', // for faster build
 	],
 
@@ -42,12 +41,43 @@ export default {
 		'@nuxtjs/axios',
 		// https://go.nuxtjs.dev/pwa
 		'@nuxtjs/pwa',
+		'@nuxtjs/auth',
+		"cookie-universal-nuxt"
 	],
+
+	// Nuxt Auth
+	auth: {
+		strategies: {
+			local: {
+				token: {
+					property: 'token',
+					global: true,
+					required: true,
+					type: 'Bearer',
+					maxAge: ((1000 * 60) * 15) // = 900000 millisecons = 15 min
+				},
+				user: {
+					property: 'user',
+					// autoFetch: true
+				},
+				endpoints: {
+					login: { url: '/admin/login', method: 'post' },
+					logout: false,
+					user: false
+				}
+			},
+			// google: {
+			// 	clientId: '...'
+			// },
+		}
+	},
+
 
 	// Axios module configuration: https://go.nuxtjs.dev/config-axios
 	axios: {
 		// Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
 		baseURL: 'http://localhost:8000/api',
+		credentials: true
 	},
 
 	// PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -61,18 +91,6 @@ export default {
 	vuetify: {
 		customVariables: ['~/assets/variables.scss'],
 		theme: {
-			// dark: false,
-			// themes: {
-			// 	dark: {
-			// 		primary: colors.blue.darken2,
-			// 		accent: colors.grey.darken3,
-			// 		secondary: colors.amber.darken3,
-			// 		info: colors.teal.lighten1,
-			// 		warning: colors.amber.base,
-			// 		error: colors.deepOrange.accent4,
-			// 		success: colors.green.accent3
-			// 	}
-			// }
 			dark: false,
 			default: 'light',
 			disable: false,

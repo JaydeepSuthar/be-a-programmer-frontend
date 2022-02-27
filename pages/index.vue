@@ -14,7 +14,7 @@
           Build projects, practice and learn to code from scratch without
           leaving your browser . <br /><br /><br />
           <button>Explore Couse Library</button>
-		   <v-btn color="warning" nuxt to="/admin"> Go to Admin Panel </v-btn>
+		   <v-btn color="warning" nuxt to="/admin/home"> Go to Admin Panel </v-btn>
         </div>
         <div class="video">
           <video controls width="650px" autoplay>
