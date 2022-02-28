@@ -2,7 +2,7 @@
 	<v-container>
 		<h1>Create Instructor</h1>
 
-		<UserAuthForm buttonText="Create Instructor" :submitForm="createAdminUser" />
+		<UserAuthForm buttonText="Create Instructor" :submitForm="createAdminUser" :hasName="true" />
 	</v-container>
 </template>
 

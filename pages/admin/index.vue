@@ -15,8 +15,8 @@
 				try {
 					let loggedInUser = await this.$auth.loginWith('local', {data: loginInfo});
 
-					if (loggedInUser.status === 200) {
-						console.log(`lOGGED IN USER: ${ JSON.stringify(loggedInUser, null, 2) }`);
+					if (loggedInUser.status === 200 || loggedInUser.status === 204) {
+						// console.log(`lOGGED IN USER: ${ JSON.stringify(loggedInUser, null, 2) }`);
 						let user = loggedInUser.data.data;
 
 						this.$auth.$storage.setUniversal('user', user);

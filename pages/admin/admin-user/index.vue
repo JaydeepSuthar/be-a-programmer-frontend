@@ -22,6 +22,20 @@
 				:items-per-page="10"
 				class="mt-5 elevation-3"
 			>
+				<template v-slot:top>
+					<v-toolbar flat>
+						<!-- <v-toolbar-title class="display-1 text-decoration-underline"
+						>All Courses</v-toolbar-title
+					> -->
+						<v-divider class="mx-4" inset vertical></v-divider>
+						<v-spacer></v-spacer>
+
+						<v-btn to="/admin/admin-user/new" class="success" exact nuxt
+							>Add Instructor</v-btn
+						>
+					</v-toolbar>
+				</template>
+
 				<template v-slot:item.actions="{ item }">
 					<!-- <v-btn small class="mr-2 warning">Edit</v-btn> -->
 					<v-btn small @click="deleteUser(item)" class="mr-2 error"
@@ -84,7 +98,7 @@
 
 					this.$store.dispatch("snackbar/setSnackbar", {
 						text: `You have successfully deleted your user, ${user.title}.`,
-						color: 'red'
+						color: "red",
 					});
 
 					// TODO: NOT THE MOST EFFECIENT WAY

@@ -81,7 +81,7 @@
 					title: "",
 					slug: "",
 					body: "",
-					author: "Jaydeep Suthar",
+					adminId: "",
 				},
 			};
 		},
@@ -91,10 +91,11 @@
 					if (this.blogAlreadyExists() === true) {
 						alert("Blog Already Exists");
 					} else {
+						let currentlyLoggedInUserId = this.$auth.$storage.getLocalStorage('user').id;
 						try {
 							const response = await this.$axios.post(
 								"/blog/add",
-								this.blog
+								{...this.blog, adminId: currentlyLoggedInUserId}
 							);
 							if (response.status == 200 || response.status == 204) {
 								this.$store.dispatch("snackbar/setSnackbar", {

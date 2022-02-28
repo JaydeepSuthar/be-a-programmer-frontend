@@ -33,27 +33,11 @@
 						>Add Assignment</v-btn
 					>
 
-					<v-dialog v-model="dialogDelete" max-width="500px">
-						<v-card>
-							<v-card-title class="text-h5"
-								>Are you sure you want to delete this
-								item?</v-card-title
-							>
-							<v-card-actions>
-								<v-spacer></v-spacer>
-								<v-btn color="blue darken-1" text>Cancel</v-btn>
-								<!-- @click="closeDelete" -->
-								<v-btn color="blue darken-1" text>OK</v-btn>
-								<!-- @click="deleteItemConfirm" -->
-								<v-spacer></v-spacer>
-							</v-card-actions>
-						</v-card>
-					</v-dialog>
 				</v-toolbar>
 			</template>
 			<!-- eslint-ignore-next-line -->
 			<template v-slot:item.actions="{ item }">
-				<v-btn
+				<!-- <v-btn
 					small
 					:to="`./assignment/${item.id}/edit`"
 					class="mr-2 warning"
@@ -62,7 +46,7 @@
 					<v-icon small class="mr-2" @click="editItem(item)">
 						mdi-pencil </v-icon
 					>Edit</v-btn
-				>
+				> -->
 				<v-btn small @click="deleteassignment(item)" class="mr-2 error">
 					<v-icon small @click="deleteItem(item)"> mdi-delete </v-icon
 					>Delete</v-btn
@@ -101,24 +85,24 @@ export default {
 			this.showDialog = value;
 		},
 
-		async editassignment(Assignments) {
-			console.log(`Assignment Edit Successfully: ${Assignments.id}`);
+		async editassignment(assignments) {
+			console.log(`Assignment Edit Successfully: ${assignments.id}`);
 		},
 
-		async deleteassignment(Assignments) {
+		async deleteassignment(assignments) {
 			let confirmation = confirm(
-				`Are you sure you want to delete ${Assignments.title}`
+				`Are you sure you want to delete Assigment`
 			);
 
 			if (confirmation) {
 				const response = await this.$axios.delete(
-					`/assignment/delete/${Assignments.id}`
+					`/misc/assignment/delete/${assignments.id}`
 				);
 
 				console.log(`Assigment Deleted Successfully: ${response.data}`);
 
 				this.$store.dispatch("snackbar/setSnackbar", {
-					text: `You have successfully deleted your Assignment, ${Assignments.title}.`,
+					text: `You have successfully deleted your Assignment, ${assignments.title}.`,
 				});
 
 				// TODO: NOT THE MOST EFFECIENT WAY

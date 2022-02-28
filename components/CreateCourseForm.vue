@@ -123,7 +123,7 @@
 					duration: "",
 					requirement: "",
 					is_active: "",
-					adminId: "620cc340ed391d5f33f13b6d",
+					adminId: "",
 				},
 			};
 		},
@@ -134,9 +134,10 @@
 						alert("Course Already Exists");
 					} else {
 						try {
+							let currentlyLoggedInUserId = this.$auth.$storage.getLocalStorage('user').id;
 							const response = await this.$axios.post(
 								"/course/add",
-								this.course
+								{...this.course, adminId: currentlyLoggedInUserId}
 							);
 							this.$store.dispatch("snackbar/setSnackbar", {
 								text: `You have successfully created course`,
