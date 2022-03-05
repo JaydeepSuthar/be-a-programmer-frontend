@@ -9,6 +9,7 @@ export const state = () => ({
 export const mutations = {
 	SET_USER(state, user) {
 		state.user = user;
+		state.isLoggedIn = true;
 	},
 	SET_LOGGED_IN(state, status) {
 		state.isLoggedIn = status;

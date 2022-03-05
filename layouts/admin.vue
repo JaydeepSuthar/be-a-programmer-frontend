@@ -16,12 +16,17 @@
 					:to="item.to"
 					exact
 					link
+					v-if="item.permission.includes(role)"
 				>
+					<!-- FIXME: THIS ERROR IS BECAUSE OF USING IF AND FOR BOTH -->
+					<!-- {{ if(item.permission.includes(role)) }} -->
 					<v-list-item-icon>
+						<!-- v-show="item.permission.includes(role)" -->
 						<v-icon>{{ item.icon }}</v-icon>
 					</v-list-item-icon>
 
 					<v-list-item-content>
+						<!-- v-show="item.permission.includes(role)" -->
 						<v-list-item-title>{{ item.title }}</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>
@@ -64,24 +69,59 @@
 	export default {
 		name: "admin",
 		middleware: "auth-admin",
+		async fetch() {
+			const rawUser = localStorage.getItem("auth.user");
+			const { role } = JSON.parse(rawUser);
+			console.log(`Role: ${role}`);
+			this.role = role;
+		},
+		fetchOnServer: false,
 		data: () => ({
 			drawer: true,
+			role: "",
 			items: [
 				{
 					title: "Dashboard",
 					icon: "mdi-view-dashboard",
 					to: "/admin/home",
+					permission: ["admin", "instructor"],
 				},
-				{ title: "Users", icon: "mdi-account", to: "/admin/user" },
+				{
+					title: "Users",
+					icon: "mdi-account",
+					to: "/admin/user",
+					permission: ["admin"],
+				},
 				{
 					title: "Instructor",
 					icon: "mdi-account-supervisor",
 					to: "/admin/admin-user",
+					permission: ["admin"],
 				},
-				{ title: "Course", icon: "mdi-video", to: "/admin/course" },
-				{ title: "Blog", icon: "mdi-book", to: "/admin/blog" },
-				{ title: "Exam", icon: "mdi-gavel", to: "/admin/exam" },
-				{ title: "Coupon", icon: "mdi-widgets", to: "/admin/coupon" },
+				{
+					title: "Course",
+					icon: "mdi-video",
+					to: "/admin/course",
+					permission: ["admin", "instructor"],
+				},
+				{
+					title: "Blog",
+					icon: "mdi-book",
+					to: "/admin/blog",
+					permission: ["admin", "instructor"],
+				},
+				{
+					title: "Exam",
+					icon: "mdi-gavel",
+					to: "/admin/exam",
+					permission: ["admin", "instructor"],
+				},
+				{
+					title: "Coupon",
+					icon: "mdi-widgets",
+					to: "/admin/coupon",
+					permission: ["admin"],
+				},
 			],
 		}),
 		computed: {
@@ -92,12 +132,12 @@
 		methods: {
 			async logOut() {
 				console.log(`i am clicked`);
-				this.$auth.$storage.removeUniversal('user');
-				let resposne = await this.$axios.delete('/admin/logout');
+				this.$auth.$storage.removeUniversal("user");
+				let resposne = await this.$axios.delete("/admin/logout");
 				window.localStorage.clear();
 				this.$cookies.removeAll();
 				console.log(resposne);
-				this.$router.push('/');
+				this.$router.push("/");
 			},
 		},
 	};
