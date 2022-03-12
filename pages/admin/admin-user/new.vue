@@ -19,8 +19,8 @@
 						// console.log(`lOGGED IN USER: ${ JSON.stringify(registerInstructor, null, 2) }`);
 						let user = registerInstructor.data.data;
 
-						this.$auth.$storage.setUniversal('user', user);
-						this.$auth.setUser(user);
+						// this.$auth.$storage.setUniversal('user', user);
+						// this.$auth.setUser(user);
 						this.$router.go(-1);
 					}
 				} catch ({ response }) {
