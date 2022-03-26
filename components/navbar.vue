@@ -1,15 +1,21 @@
 <template>
   <div class="main">
+
     <ul>
-      <li>Home</li>
-      <li>Courses</li>
-      <li>Blog</li>
-      <li>About</li>
-      <li>Contact Us</li>
-      <li>login</li>
-      <li><button>Register</button></li>
+		<div class="logo"><v-avatar class="mb-4" size="70">
+					<img src="logo2.png" alt=""
+				/></v-avatar>
+			</div>
+      <li> <a href="/home"> Home</a></li>
+      <li><a href="/courses"> Courses</a></li>
+      <li> <a href="/blog">Blog</a></li>
+      <li> <a href="/about"> About</a></li>
+      <li> <a href="/contact"> Contact Us</a></li>
+      <li> <a href="/login"> Login</a>  </li>
+      <li><button> <a href="/signup"> Register </a></button></li>
     </ul>
   </div>
+
 </template>
 
 <style>
@@ -27,14 +33,23 @@
   position: sticky;
   top: 0;
 }
+.logo {
+	position: absolute;
+	left: 2rem;
+	cursor: pointer;
+
+
+}
 
 ul {
   display: flex;
   justify-content: flex-end;
   font-family: "Roboto", sans-serif;
   gap: 2rem;
+  font-size: 25px;
   color: white;
   background: inherit;
+  cursor: pointer;
 }
 
 li {
@@ -43,6 +58,7 @@ li {
 
 li:hover {
   color: gray;
+  text-decoration: underline;
 }
 
 ul button {
@@ -51,8 +67,32 @@ ul button {
   border: 1px solid darkgray;
   border-radius: 30px;
   color: white;
+  cursor: pointer;
 }
 ul button:hover {
   opacity: 0.7;
 }
+a:link {
+
+
+	color: white;
+	text-decoration: none;
+}
+a:visited{
+	color: white;
+	text-decoration: none;
+}
+a:hover{
+	color:grey;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+
 </style>
+
+<script>
+
+</script>
+
+

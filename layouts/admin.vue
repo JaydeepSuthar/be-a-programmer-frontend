@@ -3,7 +3,7 @@
 		<v-navigation-drawer v-model="drawer" app>
 			<v-sheet color="grey lighten-4" class="pa-4">
 				<v-avatar id="avatar" class="mb-4" size="70">
-					<img src="logo1.png" alt=""
+					<img src="logo.png" alt=""
 				/></v-avatar>
 
 				<div><h2>Be A Programmer</h2></div>
