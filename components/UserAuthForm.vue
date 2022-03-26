@@ -3,6 +3,8 @@
 		<v-text-field
 			v-model="userInfo.name"
 			label="Name"
+			outlined
+			autofocus
 			:rules="[required('name')]"
 			v-if="hasName"
 		/>
@@ -49,5 +51,4 @@
 	};
 </script>
 
-<style lang="scss" scoped>
-</style>
+

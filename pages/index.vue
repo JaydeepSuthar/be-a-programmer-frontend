@@ -32,6 +32,8 @@
           of theory and practice right inside your browser. 10x more engaging,
           higher quality, cheaper, and a stellar experience for visual learners.
         </p>
+
+
       </div>
     </section>
   </div>
@@ -119,4 +121,5 @@ button:hover {
 		name: "IndexPage",
 	};
 </script>
+
 
