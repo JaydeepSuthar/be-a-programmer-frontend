@@ -98,6 +98,7 @@
 <script>
 	export default {
 		name: "DefaultLayout",
+		middleware: "load-all-courses",
 		data() {
 			return {
 				clipped: false,

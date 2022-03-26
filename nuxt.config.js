@@ -1,4 +1,4 @@
-import colors from 'vuetify/es5/util/colors';
+import colors from 'vuetify/es5/util/colors'
 
 export default {
 	// Global page headers: https://go.nuxtjs.dev/config-head
@@ -18,6 +18,7 @@ export default {
 
 	// Global CSS: https://go.nuxtjs.dev/config-css
 	css: [
+		'@/assets/main.scss'
 	],
 
 	// Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -33,6 +34,7 @@ export default {
 		// https://go.nuxtjs.dev/vuetify
 		'@nuxtjs/vuetify',
 		'nuxt-esbuild', // for faster build
+		'@nuxt/postcss8', // postcss for tailwindcss
 	],
 
 	// Modules: https://go.nuxtjs.dev/config-modules
@@ -125,5 +127,11 @@ export default {
 
 	// Build Configuration: https://go.nuxtjs.dev/config-build
 	build: {
+		postcss: {
+			plugins: {
+				tailwindcss: {},
+				autoprefixer: {},
+			},
+		},
 	}
-};
+}
