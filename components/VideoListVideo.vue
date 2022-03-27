@@ -8,7 +8,7 @@
 				<!-- something -->
 			</v-card-text>
 			<v-card-actions>
-				<span v-for="tag_id in video.tags" :key="tag_id">
+				<!-- <span v-for="tag_id in video.tags" :key="tag_id">
 					<v-btn
 						color="green lighten-2"
 						class="mr-2"
@@ -18,7 +18,7 @@
 					>
 						{{ tag_id }}
 					</v-btn>
-				</span>
+				</span> -->
 			</v-card-actions>
 		</v-card>
 	</div>

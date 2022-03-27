@@ -1,14 +1,12 @@
 <template>
 	<div class="wrapper">
-		<section class="header h-44 bg-slate-900 flex flex-row items-center">
+		<section class="header h-44 bg-slate-900 flex flex-row justify-center items-center">
 			<p class="greeting__text text-5xl text-white">
-				Welcome to BeAProgrammer
+				Welcome to Be A Programmer
 			</p>
 		</section>
 
 		<section class="display__course">
-			<p class="section__title">Courses</p>
-
 			<!-- Course List Here -->
 			<CourseList
 				imgUrl="https://picsum.photos/250/250"
@@ -19,13 +17,11 @@
 
 		<section>
 			<div class="home">
-				<div class="display-4 ma-4 d-flex justify-center">
+				<div class="display-2 ma-4 d-flex justify-center">
 					All Courses
 				</div>
-				<div class="d-flex flex-wrap">
-					<div v-for="course in courses" :key="course.id">
-						<video-list-video :video="course" />
-					</div>
+				<div id="courese-list">
+					<CourseList :courses="courses" />
 				</div>
 			</div>
 		</section>
@@ -34,10 +30,10 @@
 
 <script>
 	import { mapState } from "vuex";
-	import VideoListVideo from "../../components/VideoListVideo.vue";
+	import CourseList from "../../components/CourseList.vue";
 
 	export default {
-		components: { VideoListVideo },
+		components: { CourseList },
 		name: "IndexPage",
 		computed: {
 			...mapState({
