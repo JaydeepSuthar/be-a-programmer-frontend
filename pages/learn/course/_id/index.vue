@@ -1,9 +1,5 @@
 <template>
 	<v-container id="course-details">
-		<!-- <pre>
-			{{ course }}
-		</pre
-		> -->
 		<h2>{{ course.title }}</h2>
 
 		<p>{{ course.description }}</p>
@@ -26,24 +22,31 @@
 			</div>
 		</div>
 
+		<!-- {{ JSON.stringify(chapters) }} -->
+		<!-- TODO: Make syllabus working -->
+		<Syllabus :chapters="chapters" />
+
 		<FAQ />
 	</v-container>
 </template>
 
 <script>
-	import { mapGetters } from "vuex";
-
-	import FAQ from '../../../../components/FAQ.vue'
+	import { mapGetters, mapState } from "vuex";
 
 	export default {
-		name: "Course Details",
-		components: ['FAQ'],
+		async fetch({ store, params }) {
+			await store.dispatch("chapters/loadAllChapters", params.id);
+		},
 		methods: {
 			getCourseId() {
 				console.log(this.params);
 			},
 		},
 		computed: {
+			...mapState({
+				chapters: (state) => state.chapters.chapters,
+			}),
+
 			...mapGetters({
 				getCourse: "courses/get",
 			}),

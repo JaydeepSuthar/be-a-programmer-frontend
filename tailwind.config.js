@@ -1,4 +1,8 @@
 module.exports = {
+    corePlugins: {
+        preflight: false,
+    },
+    prefix: 'tw-',
 	content: [
 		"./components/**/*.{js,vue,ts}",
 		"./layouts/**/*.vue",

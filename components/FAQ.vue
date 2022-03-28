@@ -1,23 +1,23 @@
 <template>
-	<section id="faq" class="mt-5">
+	<section id="faq" class="tw-mt-5">
 		<div
 			class="
 				faq-title
-				m-0
-				min-w-0
-				text-3xl
-				font-semibold
-				select-none
-				text-left
-				transform-none
+				tw-m-0
+				tw-min-w-0
+				tw-text-3xl
+				tw-font-semibold
+				tw-select-none
+				tw-text-left
+				tw-transform-none
 			"
 		>
 			Frequently Asked Questions
 		</div>
 
-		<div class="faq-list mt-5">
-			<li class="faq-list-item list-none select-none hover:no-underline">
-				<p class="faq-question font-bold">
+		<div class="faq-list tw-mt-5">
+			<li class="faq-list-item tw-list-none tw-select-none tw-hover:no-underline">
+				<p class="faq-question tw-font-bold">
 					When does this course start and finish
 				</p>
 				<p class="faq-answer">
@@ -27,8 +27,8 @@
 				</p>
 			</li>
 
-			<li class="faq-list-item list-none">
-				<p class="faq-question font-bold">
+			<li class="faq-list-item tw-list-none">
+				<p class="faq-question tw-font-bold">
 					What does this course includes?
 				</p>
 				<p class="faq-answer">
@@ -38,8 +38,8 @@
 					very transparently. Whatever is included, is mentioned.
 				</p>
 			</li>
-			<li class="faq-list-item list-none">
-				<p class="faq-question font-bold">
+			<li class="faq-list-item tw-list-none">
+				<p class="faq-question tw-font-bold">
 					How many times can I watch a video
 				</p>
 				<p class="faq-answer">
@@ -47,16 +47,16 @@
 					Totally on you
 				</p>
 			</li>
-			<li class="faq-list-item list-none">
-				<p class="faq-question font-bold">
+			<li class="faq-list-item tw-list-none">
+				<p class="faq-question tw-font-bold">
 					Does this course come with certificate?
 				</p>
 				<p class="faq-answer">
 					Yep, All of our paid course comes with certificates
 				</p>
 			</li>
-			<li class="faq-list-item list-none">
-				<p class="faq-question font-bold">
+			<li class="faq-list-item tw-list-none">
+				<p class="faq-question tw-font-bold">
 					Can I check the video quality?
 				</p>
 				<p class="faq-answer">
@@ -67,8 +67,8 @@
 					quality
 				</p>
 			</li>
-			<li class="faq-list-item list-none">
-				<p class="faq-question font-bold">Do you offer Refunds?</p>
+			<li class="faq-list-item tw-list-none">
+				<p class="faq-question tw-font-bold">Do you offer Refunds?</p>
 				<p class="faq-answer">
 					We recommend checking free previews and course content.
 					Also, check our free course to get an idea about video and

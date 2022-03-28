@@ -1,7 +1,13 @@
 <template>
 	<div class="wrapper">
-		<section class="header h-44 bg-slate-900 flex flex-row justify-center items-center">
-			<p class="greeting__text text-5xl text-white">
+		<section
+			class="
+				tw-header tw-h-44 tw-bg-slate-900 tw-flex
+				tw-flex-row
+				tw-justify-center tw-items-center
+			"
+		>
+			<p class="greeting__text tw-text-5xl tw-text-white">
 				Welcome to Be A Programmer
 			</p>
 		</section>
