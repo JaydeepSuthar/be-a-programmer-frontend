@@ -47,7 +47,7 @@
 				</div>
 			</v-col>
 			<v-col id="course-buy-content">
-				<CourseBuyCard />
+				<CourseBuyCard :course="course" />
 			</v-col>
 			<FAQ />
 		</v-row>

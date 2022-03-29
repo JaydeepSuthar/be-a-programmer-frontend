@@ -59,66 +59,56 @@
 </template>
 
 <script>
-	import validation from "@/utils/validations";
-	import faker from "faker";
+import validation from "@/utils/validations";
+import faker from "faker";
 
-	export default {
-		props: ["dialog", "chapters"],
-		data() {
-			return {
-				...validation,
-				chapter: {
-					srno: 0,
-					name: "",
-					is_visible: false,
-				},
-			};
-		},
+export default {
+	props: ["dialog", "chapters"],
+	data() {
+		return {
+			...validation,
+			chapter: {
+				name: "",
+				is_visible: false,
+			},
+		};
+	},
 
-		methods: {
-			async handleSubmit() {
-				if (!(this.chapter.name == "")) {
-					try {
-						let response = await this.$store.dispatch(
-							"chapters/create",
-							{
-								...this.chapter,
-								course_id: this.$route.params.id,
-								srno: this.lastSrNo
-							}
-						);
-						if (response.status === 200 || response.status === 204) {
-							this.$store.dispatch("snackbar/setSnackbar", {
-								text: `You have successfully created chapter`,
-							});
+	methods: {
+		async handleSubmit() {
+			if (!(this.chapter.name == "")) {
+				try {
+					let response = await this.$store.dispatch(
+						"chapters/create",
+						{
+							...this.chapter,
+							course_id: this.$route.params.id,
 						}
-					} catch (err) {
-						console.log(err);
+					);
+					if (response.status === 200 || response.status === 204) {
+						this.$store.dispatch("snackbar/setSnackbar", {
+							text: `You have successfully created chapter`,
+						});
 					}
+				} catch (err) {
+					console.log(err);
 				}
-				this.chapter = {
-					srno: 0,
-					name: "",
-					is_visible: false,
-				},
+			}
+			(this.chapter = {
+				name: "",
+				is_visible: false,
+			}),
 				this.$emit("closeDialog");
-			},
-
-			fillForm() {
-				const mockChapterData = {
-					name: faker.name.title(),
-					is_visible: true,
-				};
-
-				this.chapter = mockChapterData;
-			},
 		},
 
-		computed: {
-			lastSrNo() {
-				let lastChapterIndex = this.chapters.length || 2;
-				return parseInt(this.chapters[lastChapterIndex - 1].srno);
-			},
+		fillForm() {
+			const mockChapterData = {
+				name: faker.name.title(),
+				is_visible: true,
+			};
+
+			this.chapter = mockChapterData;
 		},
-	};
+	},
+};
 </script>
