@@ -2,9 +2,11 @@
   <div class="main">
     <ul>
       <div class="logo">
-        <v-avatar class="mb-4" size="70">
-          <img src="logo2.png" alt=""
-        /></v-avatar>
+        <a
+          href="http://localhost:3000/
+	   "
+          ><v-avatar size="70"> <img src="logo2.png" alt="" /></v-avatar>
+        </a>
       </div>
       <li><a href="/home"> Home</a></li>
       <li><a href="/learn"> Courses</a></li>

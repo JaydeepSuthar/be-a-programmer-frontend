@@ -37,7 +37,6 @@
 <script>
 	import { mapState } from "vuex";
 	import CourseList from "../../components/CourseList.vue";
-
 	export default {
 		components: { CourseList },
 		name: "IndexPage",

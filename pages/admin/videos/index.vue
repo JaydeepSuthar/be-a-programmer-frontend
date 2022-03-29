@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <h1>Video List</h1>
-    <v-btn text to="/admin/videos/new">Add Video</v-btn>
+    <v-btn class="success" to="./admin/videos/new" nuxt>Add Video</v-btn>
 
     <div class="flex-table">
       <div>Name</div>
@@ -22,48 +22,50 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex';
-  export default {
-    computed: {
-      ...mapState({
-        videos: state => state.videos.videos
-      })
-    },
-    filters: {
-      abbreviate(text) {
-        if(text){
-          text = text.replace('<p>', '');
-          return text.slice(0, 50);
-        }
+import { mapState } from "vuex";
+export default {
+  computed: {
+    ...mapState({
+      videos: (state) => state.videos.videos,
+    }),
+  },
+  filters: {
+    abbreviate(text) {
+      if (text) {
+        text = text.replace("<p>", "");
+        return text.slice(0, 50);
       }
     },
-    methods: {
-      deleteVideo(video) {
-        let response = confirm(`Are you sure you want to delete ${video.title}`)
-        if(response){
-          this.$store.dispatch('videos/delete', video);
-          this.$store.dispatch('snackbar/setSnackbar', {text: `You have successfully deleted your video, ${video.title}.`});
-        }
+  },
+  methods: {
+    deleteVideo(video) {
+      let response = confirm(`Are you sure you want to delete ${video.title}`);
+      if (response) {
+        this.$store.dispatch("videos/delete", video);
+        this.$store.dispatch("snackbar/setSnackbar", {
+          text: `You have successfully deleted your video, ${video.title}.`,
+        });
       }
-    }
-  }
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .flex-table {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 33%);
-    padding: 10px;
-    border-bottom: 1px black solid;
+.flex-table {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 33%);
+  padding: 10px;
+  border-bottom: 1px black solid;
 
-    &:nth-of-type(2n) {
-      background-color: #dedede;
-    }
+  &:nth-of-type(2n) {
+    background-color: #dedede;
+  }
 
-    .actions {
-      * {
-        padding-right: 15px
-      }
+  .actions {
+    * {
+      padding-right: 15px;
     }
   }
+}
 </style>

@@ -1,41 +1,43 @@
 <template>
-
-  <div class="parent">
-
-    <navbar />
-    <section>
-      <div class="middle">
-        <div class="intro">
-          <h1>
-            Learn <br />
-            Programming
-          </h1>
+  <div>
+    <div class="parent">
+      <navbar />
+      <section>
+        <div class="middle">
+          <div class="intro">
+            <h1>
+              Learn <br />
+              Programming
+            </h1>
+            <br />
+            Build projects, practice and learn to code from scratch without
+            leaving your browser . <br /><br /><br />
+            <button>Explore Couse Library</button>
+            <v-btn color="warning" nuxt to="/admin/home">
+              Go to Admin Panel
+            </v-btn>
+          </div>
+          <div class="video">
+            <video controls width="650px" autoplay>
+              <source src="how.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+        <div class="extra">
+          <h1>GET OUT OF THE TUTORIAL HELL</h1>
           <br />
-          Build projects, practice and learn to code from scratch without
-          leaving your browser . <br /><br /><br />
-          <button>Explore Couse Library</button>
-		   <v-btn color="warning" nuxt to="/admin/home"> Go to Admin Panel </v-btn>
+          <p>
+            You have read about "Practice makes a man perfect", but you still
+            learn by watching hours of videos. For the first time ever, you can
+            experience an interactive course completely online - a perfect blend
+            of theory and practice right inside your browser. 10x more engaging,
+            higher quality, cheaper, and a stellar experience for visual
+            learners.
+          </p>
         </div>
-        <div class="video">
-          <video controls width="650px" autoplay>
-            <source src="how.mp4" type="video/mp4" />
-          </video>
-        </div>
-      </div>
-      <div class="extra">
-        <h1>GET OUT OF THE TUTORIAL HELL</h1>
-        <br />
-        <p>
-          You have read about "Practice makes a man perfect", but you still
-          learn by watching hours of videos. For the first time ever, you can
-          experience an interactive course completely online - a perfect blend
-          of theory and practice right inside your browser. 10x more engaging,
-          higher quality, cheaper, and a stellar experience for visual learners.
-        </p>
-
-
-      </div>
-    </section>
+      </section>
+    </div>
+    <ftr />
   </div>
 </template>
 
@@ -102,6 +104,7 @@ button:hover {
   padding-top: 30px;
   background: white;
   color: black;
+  user-select: none;
 }
 
 .extra h1 {
@@ -117,9 +120,9 @@ button:hover {
 
 
 <script>
-	export default {
-		name: "IndexPage",
-	};
+export default {
+  name: "IndexPage",
+};
 </script>
 
 

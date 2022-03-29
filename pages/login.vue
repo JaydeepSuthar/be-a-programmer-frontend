@@ -1,6 +1,7 @@
 <template>
   <div>
-    <v-app>
+    <v-app class="man">
+      <navbar />
       <h1>Login</h1>
       <br />
       <v-layout>
@@ -26,13 +27,17 @@
         </v-flex>
       </v-layout>
     </v-app>
+    <ftr />
   </div>
 </template>
 <style scoped>
 h1 {
-  color: rgba(15, 135, 182, 0.767);
-  font-size: 40px;
+  color: rgba(10, 49, 85, 0.959);
+  font-size: 60px;
   text-align: center;
+}
+.man {
+  background: rgb(199, 199, 199);
 }
 </style>
 
@@ -45,12 +50,22 @@ export default {
   },
   methods: {
     async handleUserLogin(loginInfo) {
-      let response = await this.$auth.loginWith("local", {
-        data: loginInfo,
-      });
-      let user = response.data.loggedInUser;
+      // * for future reference
+      //   let response = await this.$auth.loginWith("local", {
+      //     data: loginInfo,
+      //   });
+      //   let user = response.data.loggedInUser;
 
-      this.$auth.setUser(user);
+      //   this.$auth.setUser(user);
+
+      let response = await this.$axios.post("/user/login", loginInfo);
+      let userData = response.data;
+      console.log(userData).auth;
+
+      //   let auth_token = userData.auth.token;
+      let user = userData.data;
+
+      console.log(user);
     },
     async loginWithGoogle() {
       let response = await this.$auth.loginWith("google");

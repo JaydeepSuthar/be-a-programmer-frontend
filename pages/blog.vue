@@ -1,5 +1,6 @@
 <template>
   <div>
+    <navbar />
     <h1>Blogs</h1>
 
     <v-card v-for="blog in blogs" :key="blog.id" hover class="ma-2">
@@ -13,6 +14,10 @@
         </div>
       </div>
     </v-card>
+    <br />
+    <br />
+
+    <ftr />
   </div>
 </template>
 
@@ -36,6 +41,8 @@ export default {
 <style scoped>
 h1 {
   text-align: center;
+  font-size: 80px;
+  color: rgb(17, 201, 185);
 }
 .blog {
   display: flex;
