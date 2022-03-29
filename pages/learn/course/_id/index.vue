@@ -1,59 +1,87 @@
 <template>
 	<v-container id="course-details">
-		<h2>{{ course.title }}</h2>
+		<v-row>
+			<v-col id="course-details-content">
+				<h2>{{ course.title }}</h2>
 
-		<p>{{ course.description }}</p>
+				<p>{{ course.description }}</p>
 
-		<p>fetch chapters and show as sylabus</p>
+				<p></p>
+				<!-- chapters here -->
+				<!-- FIXME: for some reason component is not working so we dont converting it into component -->
+				<!-- <ChapterList :chapters="chapters" /> -->
+				<div class="syllabus">
+					<v-list>
+						<v-list-group
+							v-for="chapter in chapters"
+							:key="chapter.id"
+						>
+							<template v-slot:activator>
+								<v-list-item-title>{{
+									chapter.chapter_name
+								}}</v-list-item-title>
+							</template>
 
-		<p></p>
+							<v-list-item
+								v-for="video in chapter.videos"
+								:key="video.id"
+							>
+								{{ video.title }}
+							</v-list-item>
+						</v-list-group>
+					</v-list>
+				</div>
 
-		<div class="instructor-details">
-			<h2>instructor</h2>
+				<div class="instructor-details">
+					<h2>instructor</h2>
 
-			<div class="avtar-with-name">
-				<v-avatar size="36px">
-					<img
-						alt="Avatar"
-						src="https://avatars.githubusercontent.com/u/52647252?v=4&s=460"
-					/>
-				</v-avatar>
-				<strong class="ml-3">{{ course.admin.name }}</strong>
-			</div>
-		</div>
-
-		<!-- {{ JSON.stringify(chapters) }} -->
-		<!-- TODO: Make syllabus working -->
-		<Syllabus :chapters="chapters" />
-
-		<FAQ />
+					<div class="avtar-with-name">
+						<v-avatar size="36px">
+							<img
+								alt="Avatar"
+								src="https://avatars.githubusercontent.com/u/52647252?v=4&s=460"
+							/>
+						</v-avatar>
+						<strong class="ml-3">{{ course.admin.name }}</strong>
+					</div>
+				</div>
+			</v-col>
+			<v-col id="course-buy-content">
+				<CourseBuyCard />
+			</v-col>
+			<FAQ />
+		</v-row>
 	</v-container>
 </template>
 
 <script>
-	import { mapGetters, mapState } from "vuex";
+import { mapGetters, mapState } from "vuex";
 
-	export default {
-		async fetch({ store, params }) {
-			await store.dispatch("chapters/loadAllChapters", params.id);
+export default {
+	async fetch({ store, params }) {
+		await store.dispatch("videos/loadAllVideoOfCourse", params.id);
+	},
+	methods: {
+		getCourseId() {
+			console.log(this.params);
 		},
-		methods: {
-			getCourseId() {
-				console.log(this.params);
-			},
-		},
-		computed: {
-			...mapState({
-				chapters: (state) => state.chapters.chapters,
-			}),
 
-			...mapGetters({
-				getCourse: "courses/get",
-			}),
-
-			course() {
-				return this.getCourse(this.$route.params.id);
-			},
+		getVideos() {
+			console.log(this.chapters);
 		},
-	};
+	},
+	computed: {
+		...mapState({
+			chapters: (state) => state.videos.videos,
+		}),
+
+		...mapGetters({
+			getCourse: "courses/get",
+		}),
+
+		course() {
+			return this.getCourse(this.$route.params.id);
+		},
+	},
+};
 </script>
