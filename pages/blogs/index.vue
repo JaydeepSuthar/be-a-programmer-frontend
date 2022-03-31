@@ -4,12 +4,19 @@
     <h1>Blogs</h1>
 
     <v-card v-for="blog in blogs" :key="blog.id" hover class="ma-2">
-      <div class="blog">
+      <div class="blog" id="bloglist">
         <div class="img"><img src="about.png" alt="" /></div>
         <div class="contn">
           <v-container>
             <h2>{{ blog.title }}</h2>
-            <p>{{ blog.body }}</p>
+            <v-container>
+              <v-container>
+                <p class="chars">{{ blog.body }}</p>
+                <v-btn class="success" :to="`/blogs/${blog.id}`">
+                  Read more
+                </v-btn>
+              </v-container>
+            </v-container>
           </v-container>
         </div>
       </div>
@@ -42,7 +49,7 @@ export default {
 h1 {
   text-align: center;
   font-size: 80px;
-  color: rgb(17, 201, 185);
+  color: rgba(13, 82, 75, 0.603);
 }
 .blog {
   display: flex;
@@ -54,5 +61,10 @@ h1 {
   width: 60%;
   background: #292928;
   color: whitesmoke;
+}
+.chars {
+  width: 500ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>

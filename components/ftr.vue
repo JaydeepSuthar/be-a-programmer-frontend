@@ -13,7 +13,8 @@
             </a>
             <br />
             <h2>
-              Learn to code interactively - without ever leaving your browser.
+              Learn to code interactively <br />
+              without ever leaving your browser.
             </h2>
             <br />
             <br />

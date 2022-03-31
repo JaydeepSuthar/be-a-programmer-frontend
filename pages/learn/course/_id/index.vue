@@ -3,7 +3,7 @@
     <navbar />
     <v-container id="course-details">
       <v-row>
-        <v-col id="course-details-content">
+        <v-col id="course-details-content" cols="12" sm="12" md="8">
           <h2>{{ course.title }}</h2>
 
           <p>{{ course.description }}</p>
@@ -52,6 +52,8 @@
     <ftr />
   </div>
 </template>
+
+
 
 <script>
 import { mapGetters, mapState } from "vuex";

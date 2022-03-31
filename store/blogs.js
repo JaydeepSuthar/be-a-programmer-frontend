@@ -18,3 +18,17 @@ export const actions = {
 	}
 };
 
+export const getters = {
+	get: state => id => {
+		return state.blogs.find(v => v.id == id) || {};
+	},
+
+	// getCourseId: state => (course_name) => {
+	// 	return state.courses.find(c => c.title === course_name);
+	// },
+
+	// getCourseByName: state => title => {
+	// 	return state.courses.find(v => v.title == title)
+	// }
+};
+
