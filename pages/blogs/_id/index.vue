@@ -1,40 +1,31 @@
 <template>
-  <div>
-    <navbar />
-    <v-container>
-      <!-- <h2>{{ blogs.title }}</h2>
+	<div>
+		<navbar />
+		<v-container>
+			<h2>{{ blog.title }}</h2>
 
-      <p>{{ blogs.body }}</p>
-
-      <br /> -->
-      <v-btn @click="showBlog">Show Blog</v-btn>
-    </v-container>
-    <ftr />
-  </div>
+			<v-img
+				:src="`http://localhost:8000/public/img/${blog.thumbnail}`"
+			/>
+			<p>
+				{{ blog.body }}
+			</p>
+		</v-container>
+		<ftr />
+	</div>
 </template>
-
-
-
-
 
 <script>
 import { mapGetters } from "vuex";
-
 export default {
-  methods: {
-    showBlog() {
-      console.log(this.blog);
-    },
-  },
+	computed: {
+		...mapGetters({
+			getBlog: "blogs/get",
+		}),
 
-  computed: {
-    ...mapGetters({
-      getBlog: "blogs/get",
-    }),
-
-    blog() {
-      return this.getBlog(this.$route.params.id);
-    },
-  },
+		blog() {
+			return this.getBlog(this.$route.params.id);
+		},
+	},
 };
 </script>
