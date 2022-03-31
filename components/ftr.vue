@@ -42,6 +42,7 @@
           <v-container>
             <h3>Solution</h3>
             <ul>
+              <br />
               <a href="/learn"><li>Learning paths</li> </a>
               <a href="/learn">
                 <li>Become a full stack web developer</li>
@@ -58,8 +59,9 @@
           ><v-container>
             <h3>Support</h3>
             <ul>
+              <br />
               <a href="/contact"><li>Contact us</li> </a>
-              <a href="#"> <li>Pricing</li> </a>
+              <a href="#"> <li>FAQ</li> </a>
               <a href="/signup"> <li>Create a free account</li></a>
             </ul>
           </v-container>
@@ -70,6 +72,7 @@
           ><v-container>
             <h3>Company</h3>
             <ul>
+              <br />
               <a href="/blog"> <li>Blog</li> </a>
             </ul>
           </v-container>
@@ -80,6 +83,7 @@
           <v-container>
             <h3>Legal</h3>
             <ul>
+              <br />
               <a href="/#"><li>Privacy</li> </a>
               <a href="/#"> <li>Terms</li></a>
             </ul>
@@ -88,7 +92,12 @@
       </div>
     </div>
     <hr size="6" width="100%" color="white" />
+
+    <br />
+
     © BEAP™ 2022 | All rights reserved.
+    <br />
+    <br />
   </div>
 </template>
 <style scoped>

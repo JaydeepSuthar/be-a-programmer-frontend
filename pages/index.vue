@@ -12,27 +12,30 @@
             <br />
             Build projects, practice and learn to code from scratch without
             leaving your browser . <br /><br /><br />
-            <button>Explore Couse Library</button>
+            <a href="/learn"> <button>Explore Couse Library</button> </a>
             <v-btn color="warning" nuxt to="/admin/home">
               Go to Admin Panel
             </v-btn>
           </div>
-          <div class="video">
-            <video controls width="650px" autoplay>
-              <source src="how.mp4" type="video/mp4" />
-            </video>
+          <div class="vid">
+            <div class="wrapper">
+              <video controls class="video" autoplay>
+                <source src="how.mp4" type="video/mp4" />
+              </video>
+            </div>
           </div>
         </div>
         <div class="extra">
           <h1>GET OUT OF THE TUTORIAL HELL</h1>
           <br />
-          <p>
+          <p style="margin: 20px">
             You have read about "Practice makes a man perfect", but you still
             learn by watching hours of videos. For the first time ever, you can
             experience an interactive course completely online - a perfect blend
             of theory and practice right inside your browser. 10x more engaging,
             higher quality, cheaper, and a stellar experience for visual
-            learners.
+            learners. <br /><br />
+            <br /><br />
           </p>
         </div>
       </section>
@@ -62,16 +65,19 @@
 
 .middle {
   display: flex;
+  justify-content: space-between;
 }
 
 .video {
-  background: inherit;
-  width: 800px;
-  display: flex;
-  flex-shrink: 2;
-  flex-grow: 1;
-  justify-content: flex-end;
-  background: inherit;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: inline-block;
+}
+.wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 button {
@@ -84,16 +90,16 @@ button {
 button:hover {
   opacity: 0.7;
 }
-
-.intro {
-  width: 500px;
+.vid {
+  width: 60vw;
   background: inherit;
-  text-align: center;
 }
 
-.imtro h1 {
-  color: #ff0800;
-  font-size: 50px;
+.intro {
+  width: 40vw;
+  background: inherit;
+  text-align: center;
+  user-select: none;
 }
 
 .extra {
@@ -110,6 +116,7 @@ button:hover {
 .extra h1 {
   color: rgb(248, 124, 8);
   font-size: 30px;
+  margin-left: 25px;
 }
 </style>
 

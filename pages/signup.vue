@@ -65,6 +65,9 @@
                 label="Password"
                 type="password"
                 v-model="signup.password"
+                :type="showPassword ? 'text' : 'password'"
+                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                @click:append="showPassword = !showPassword"
                 counter="8"
               ></v-text-field>
 
