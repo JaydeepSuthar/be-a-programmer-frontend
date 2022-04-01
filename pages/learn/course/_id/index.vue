@@ -1,5 +1,7 @@
 <template>
 	<div>
+		<NavigationBar />
+
 		<v-container id="course-details">
 			<v-row>
 				<v-col id="course-details-content" cols="12" sm="12" md="8">
