@@ -34,8 +34,8 @@
         outlined
         full-width
         rows="10"
-        counter="2500"
-        :rules="[required('Body'), minLength('Body', 5)]"
+        counter="true"
+        :rules="[required('Body')]"
       ></v-textarea>
 
       <!-- <v-file-input

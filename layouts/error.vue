@@ -1,45 +1,79 @@
 <template>
-  <v-app dark>
-    <h1 v-if="error.statusCode === 404">
-      {{ pageNotFound }}
-    </h1>
-    <h1 v-else>
-      {{ otherError }}
-    </h1>
-    <NuxtLink to="/">
-      Home page
-    </NuxtLink>
-  </v-app>
+  <div style="text-align: center">
+    <div class="img">
+      <img src="error.jpg" alt="" />
+    </div>
+    <v-app dark>
+      <h1 v-if="error.statusCode === 404">
+        {{ pageNotFound }}
+      </h1>
+      <h1 v-else>
+        {{ otherError }}
+      </h1>
+
+      <h2>We can't find the page you're looking for!</h2>
+      <br />
+
+      <a href="/"> <button class="btn">Take Me Home</button> </a>
+    </v-app>
+  </div>
 </template>
+<style scoped>
+.btn {
+  background: rgb(123, 17, 223);
+  padding: 20px;
+  border-radius: 5px;
+  border-color: whitesmoke;
+  font-size: 25px;
+}
+.img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+a:visited {
+  color: whitesmoke;
+}
+a:link {
+  color: whitesmoke;
+}
+a:hover {
+  opacity: 0.7;
+}
+h1 {
+  font-size: 90px;
+  color: darkcyan;
+}
+h2 {
+  font-size: 40px;
+  color: rgb(3, 45, 184);
+}
+</style>
 
 <script>
 export default {
-  name: 'EmptyLayout',
-  layout: 'empty',
+  name: "EmptyLayout",
+  layout: "empty",
   props: {
     error: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
-  data () {
+  data() {
     return {
-      pageNotFound: '404 Not Found',
-      otherError: 'An error occurred'
-    }
+      pageNotFound: "404 Not Found",
+      otherError: "An error occurred",
+    };
   },
-  head () {
+  head() {
     const title =
-      this.error.statusCode === 404 ? this.pageNotFound : this.otherError
+      this.error.statusCode === 404 ? this.pageNotFound : this.otherError;
     return {
-      title
-    }
-  }
-}
+      title,
+    };
+  },
+};
 </script>
 
-<style scoped>
-h1 {
-  font-size: 20px;
-}
-</style>
+
