@@ -1,8 +1,64 @@
 <template>
-  <div>
-    <button @click="pay" class="success">Pay</button>
+  <div class="cart">
+    <navbar />
+    <v-app>
+      <v-container>
+        <v-row>
+          <v-col cols="12" sm="6" md="6">
+            <v-card>
+              <v-container
+                ><h1 style="text-align: center">Your Courses</h1>
+                <v-divider> </v-divider>
+                <h2>Courses</h2>
+              </v-container></v-card
+            >
+          </v-col>
+          <v-spacer></v-spacer>
+          <v-col cols="12" sm="6" md="5">
+            <v-card>
+              <v-container>
+                <h2 style="text-align: center">Cart</h2>
+                <v-divider> </v-divider> <br />
+
+                <h3>Amount Of Course</h3>
+                <br />
+                <v-row>
+                  <v-col md="9">
+                    <v-text-field
+                      label="Cupon code"
+                      outlined
+                      autofocus
+                      placeholder="Enter Cupon Code"
+                  /></v-col>
+                  <v-btn>Apply</v-btn>
+                </v-row>
+                <h3>Final Amount Of Course</h3>
+
+                <br />
+                <v-btn @click="pay" class="btn success" large block>Pay</v-btn>
+              </v-container>
+            </v-card>
+          </v-col>
+        </v-row>
+        <!-- <v-row>
+          <v-card> <h2>More Courses</h2> </v-card>
+        </v-row> -->
+      </v-container>
+    </v-app>
   </div>
 </template>
+<style scoped>
+.cart {
+  background: #292928;
+  color: whitesmoke;
+}
+
+.btn {
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 15px;
+}
+</style>
 
 <script>
 export default {

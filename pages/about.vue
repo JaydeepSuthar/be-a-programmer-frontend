@@ -34,6 +34,7 @@
         </v-container>
       </v-app>
     </div>
+    <ftr />
   </div>
 </template>
 <style scoped>

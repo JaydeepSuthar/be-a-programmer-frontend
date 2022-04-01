@@ -2,6 +2,8 @@
   <div>
     <div id="theater-header">
       <button>&laquo; &laquo;Previous</button>
+
+      <h2>Be A Programmer</h2>
       <button>Next &raquo; &raquo;</button>
     </div>
     <div class="theater">
@@ -12,7 +14,6 @@
         <ChaptersList />
       </div>
     </div>
-    <ftr />
   </div>
 </template>
 

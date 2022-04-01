@@ -6,11 +6,12 @@
       <div>
         <v-container>
           <v-container>
-            <a href="http://localhost:3000/">
-              <v-avtar id="avatar" class="mb-4" size="10">
-                <img src="logo3.png" alt=""
-              /></v-avtar>
+            <a href="http://localhost:3000/"
+              ><v-avatar id="avatar" class="mb-4" size="60">
+                <img src="logo2.png" alt=""
+              /></v-avatar>
             </a>
+
             <br />
             <h2>
               Learn to code interactively <br />
@@ -74,7 +75,7 @@
             <h3>Company</h3>
             <ul>
               <br />
-              <a href="/blog"> <li>Blog</li> </a>
+              <a href="/blogs"> <li>Blog</li> </a>
             </ul>
           </v-container>
         </v-container>

@@ -9,7 +9,7 @@
       <v-card-title class="mt-3">₹{{ course.price }}</v-card-title>
 
       <v-card-actions>
-        <v-btn block color="primary">Add to Cart</v-btn>
+        <v-btn block color="primary" to="/cart">Add to Cart</v-btn>
       </v-card-actions>
 
       <hr />
