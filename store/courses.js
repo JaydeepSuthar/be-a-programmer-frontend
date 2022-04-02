@@ -25,11 +25,18 @@ export const mutations = {
 };
 
 export const actions = {
-	async loadAllCourses({ commit }) {
-		let { data: courses } = await getData('/course', this.$axios);
+	async loadAll({ commit }) {
+		let { data: courses } = await getData('/misc/courses/all', this.$axios);
 
 		commit('SET_COURSES', courses);
 	},
+
+	async loadAllCourses({ commit }) {
+		let { data: courses } = await getData('/course', this.$axios)
+
+		commit('SET_COURSES', courses)
+	},
+
 
 	async create({ commit }, course) {
 		let response = await this.$axios.post('/course/add', course);
