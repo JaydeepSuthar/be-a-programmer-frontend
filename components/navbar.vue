@@ -1,27 +1,38 @@
 <template>
   <div class="main">
-    <div class="logo">
-      <a
-        href="http://localhost:3000/
+    <ul>
+      <div class="logo">
+        <a
+          href="http://localhost:3000/
 	   "
-        ><v-avatar size="70"> <img src="logo2.png" alt="" /></v-avatar>
-      </a>
-    </div>
-    <div>
-      <ul>
-        <li><a href="/home"> Home</a></li>
-        <li><a href="/learn"> Courses</a></li>
-        <li><a href="/blogs">Blog</a></li>
-        <li><a href="/about"> About</a></li>
-        <li><a href="/contact"> Contact Us</a></li>
-        <li><a href="/login"> Login</a></li>
+          ><v-avatar size="70"> <img src="logo2.png" alt="" /></v-avatar>
+        </a>
+      </div>
+      <li><nuxt-link to="/home"> Home</nuxt-link></li>
+      <li><nuxt-link to="/learn"> Courses</nuxt-link></li>
+      <li><nuxt-link to="/blogs">Blog</nuxt-link></li>
+      <li><nuxt-link to="/about"> About</nuxt-link></li>
+      <li>
+        <nuxt-link to="/contact"> Contact Us</nuxt-link>
+      </li>
+      <div class="not-logged-in">
+        <li><nuxt-link to="/login"> Login</nuxt-link></li>
         <li>
           <button><a href="/signup"> Register </a></button>
         </li>
-      </ul>
-    </div>
+      </div>
+      <div>
+        <li><nuxt-link to="/login"> Log Out</nuxt-link></li>
+      </div>
+    </ul>
   </div>
 </template>
+
+<script>
+export default {
+  name: "Navbar",
+};
+</script>
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");

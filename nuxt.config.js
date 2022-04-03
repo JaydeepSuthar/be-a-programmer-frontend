@@ -68,6 +68,14 @@ export default {
 					user: false
 				}
 			},
+			// user: {
+			// 	_schema: "local",
+			// 	endpoints: {
+			// 		login: { url: '/admin/login', method: 'post' },
+			// 		logout: false,
+			// 		user: false
+			// 	}
+			// }
 			// google: {
 			// 	clientId: '...'
 			// },

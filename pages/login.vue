@@ -58,26 +58,27 @@ export default {
 	},
 	methods: {
 		async handleUserLogin(loginInfo) {
-			let response = await this.$axios.post("/user/login", loginInfo);
-			let userData = response.data;
+			try {
+				let response = await this.$axios.post("/user/login", loginInfo);
+				let userData = response.data;
 
-			if (
-				response.status == 201 ||
-				response.status == 200 ||
-				response.status == 204
-			) {
-				let user = userData.data;
+				if (response.data.is_success == true) {
+					let user = userData.data;
 
-				this.$auth.setUser(user);
+					this.$auth.setUser(user);
+					this.$auth.$storage.setUniversal("user", user, true);
 
-				console.log(user);
+					console.log(user);
 
-				this.$router.push("/");
+					this.$router.push("/");
+				}
+			} catch ({ response }) {
+				alert(response.data.msg);
+				this.$store.dispatch("snackbar/setSnackbar", {
+					text: `Invalid Credentails`,
+				});
 			}
 		},
-		// async loginWithGoogle() {
-		// 	let response = await this.$auth.loginWith("google");
-		// },
 	},
 };
 </script>
