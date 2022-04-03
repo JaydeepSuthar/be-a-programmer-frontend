@@ -66,7 +66,7 @@ export default {
 					let user = userData.data;
 
 					this.$auth.setUser(user);
-					this.$auth.$storage.setUniversal("user", user);
+					this.$auth.$storage.setUniversal("user", user, true);
 
 					console.log(user);
 
@@ -79,9 +79,6 @@ export default {
 				});
 			}
 		},
-		// async loginWithGoogle() {
-		// 	let response = await this.$auth.loginWith("google");
-		// },
 	},
 };
 </script>

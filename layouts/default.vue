@@ -7,8 +7,8 @@
 </template>
 
 <script>
-	export default {
-		name: "DefaultLayout",
-		middleware: "load-all-courses",
-	};
+export default {
+	name: "DefaultLayout",
+	middleware: ["load-all-courses", "loggedIn"],
+};
 </script>
