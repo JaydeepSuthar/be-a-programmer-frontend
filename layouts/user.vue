@@ -1,44 +1,89 @@
 <template>
-  <v-card>
-    <div>
+  <div class="man">
+    <v-card class="profilecard">
       <v-container>
-        <v-navigation-drawer
-          v-model="drawer"
-          :mini-variant="miniVariant"
-          :clipped="clipped"
-          fixed
-          app
-        >
-          <v-list>
-            <v-sheet color="grey lighten-4" class="pa-4">
-              <v-avatar id="avatar" class="mb-4" size="100">
-                <img
-                  src="https://avatars.githubusercontent.com/u/95671353?s=400&u=4dd82d530f89c8ed83d3f88bdfd32475a49b1516&v=4"
-                  alt=""
-              /></v-avatar>
-              <br />
-              <h2>Fahad jariwala</h2></v-sheet
-            >
-            <v-list-item
-              v-for="(item, i) in items"
-              :key="i"
-              :to="item.to"
-              router
-              exact
-            >
-              <v-list-item-action>
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-list-item-action>
-              <v-list-item-content>
-                <v-list-item-title v-text="item.title" />
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-navigation-drawer>
+        <div class="profile">
+          <div>
+            <v-img>
+              <img
+                src="https://avatars.githubusercontent.com/u/95671353?v=4"
+                alt=""
+                class="rounded"
+              />
+            </v-img>
+          </div>
+          <div>
+            <h1>
+              Fahad Jariwala
+              <!-- // {{ users.name }} -->
+              <v-icon>mdi-pencil</v-icon>
+            </h1>
+            <br />
+            <h3>
+              fahad@beap.dev
+              <!-- {{ users.email }} -->
+              <v-icon>mdi-pencil</v-icon>
+            </h3>
+          </div>
+        </div>
       </v-container>
+    </v-card>
+    <div class="other">
+      <div>
+        <v-card width="32.5vw" height="500px">
+          <h2>Your Details</h2>
+          <br />
+          <v-divider />
+        </v-card>
+      </div>
+      <div>
+        <v-card width="32.5vw" height="500px">
+          <h2>Learning</h2>
+          <br />
+          <v-divider />
+        </v-card>
+      </div>
+      <div>
+        <v-card width="32.5vw" height="500px">
+          <h2>certificates</h2>
+          <br />
+          <v-divider />
+        </v-card>
+      </div>
     </div>
-  </v-card>
+  </div>
 </template>
+<style scoped>
+.man {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.profilecard {
+  background: rgb(80, 88, 100);
+}
+.profile {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.other {
+  display: flex;
+  flex-wrap: wrap;
+}
+h1 {
+  font-size: 60px;
+  color: whitesmoke;
+}
+h3 {
+  font-size: 40px;
+  color: whitesmoke;
+}
+.rounded {
+  border-radius: 250px;
+  width: 350px;
+}
+</style>
 <script>
 import { mapState } from "vuex";
 export default {
@@ -51,44 +96,7 @@ export default {
     this.role = role;
   },
   fetchOnServer: false,
-  data: () => ({
-    drawer: true,
-    role: "",
-    items: [
-      {
-        title: "Dashboard",
-        icon: "mdi-view-dashboard",
-        to: " #",
-        permission: ["admin", "instructor"],
-      },
-      {
-        title: "My Courses",
-        icon: "mdi-dialpad",
-        to: " #",
-        permission: ["admin"],
-      },
-      {
-        title: "Exam",
-        icon: "mdi-gavel",
-        to: " #",
-        permission: ["admin", "instructor"],
-      },
-
-      {
-        title: "Certificates",
-        icon: "mdi-certificate",
-        to: " #",
-        permission: ["admin", "instructor"],
-      },
-
-      {
-        title: "Coupon",
-        icon: "mdi-widgets",
-        to: " #",
-        permission: ["admin"],
-      },
-    ],
-  }),
+  data: () => ({}),
   computed: {
     ...mapState({
       snackbars: (state) => state.snackbar.snackbars,

@@ -90,6 +90,7 @@
   top: 0;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .logo {
   cursor: pointer;
@@ -100,6 +101,7 @@
 ul {
   display: flex;
   justify-content: flex-end;
+  flex-wrap: wrap;
   font-family: "Roboto", sans-serif;
   gap: 2rem;
   font-size: 25px;

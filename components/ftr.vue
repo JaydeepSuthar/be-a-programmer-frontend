@@ -118,15 +118,13 @@
   background: rgb(22, 22, 22);
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   color: whitesmoke;
   justify-content: space-between;
 }
 
 ul li {
   list-style: none;
-}
-li {
-  color: gray;
 }
 
 a:link {
