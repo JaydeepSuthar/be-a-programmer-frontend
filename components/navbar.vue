@@ -1,38 +1,80 @@
 <template>
   <div class="main">
-    <ul>
-      <div class="logo">
-        <a
-          href="http://localhost:3000/
+    <div class="logo">
+      <a
+        href="http://localhost:3000/
 	   "
-          ><v-avatar size="70"> <img src="logo2.png" alt="" /></v-avatar>
-        </a>
-      </div>
-      <li><nuxt-link to="/home"> Home</nuxt-link></li>
-      <li><nuxt-link to="/learn"> Courses</nuxt-link></li>
-      <li><nuxt-link to="/blogs">Blog</nuxt-link></li>
-      <li><nuxt-link to="/about"> About</nuxt-link></li>
-      <li>
-        <nuxt-link to="/contact"> Contact Us</nuxt-link>
-      </li>
-      <div class="not-logged-in">
-        <li><nuxt-link to="/login"> Login</nuxt-link></li>
+        ><v-avatar size="70"> <img src="logo2.png" alt="" /></v-avatar>
+      </a>
+    </div>
+    <div>
+      <ul>
+        <li><nuxt-link to="/home"> Home</nuxt-link></li>
+        <li><nuxt-link to="/learn"> Courses</nuxt-link></li>
+        <li><nuxt-link to="/blogs">Blog</nuxt-link></li>
+        <li><nuxt-link to="/about"> About</nuxt-link></li>
         <li>
-          <button><a href="/signup"> Register </a></button>
+          <nuxt-link to="/contact"> Contact Us</nuxt-link>
         </li>
-      </div>
-      <div>
-        <li><nuxt-link to="/login"> Log Out</nuxt-link></li>
-      </div>
-    </ul>
+        <div v-if="this.$store.state.auth.loggedIn" id="loggedIn">
+          <li>
+            <!-- <nuxt-link to="/login"> -->
+            <button
+              @click="logOut"
+              class="
+                tw-bg-slate-400
+                tw-p-2
+                tw-rounded-md
+                tw-text-white
+                tw-font-semibold
+                tw-text-base
+              "
+            >
+              LogOut
+            </button>
+            <!-- </nuxt-link> -->
+          </li>
+        </div>
+
+        <div v-else id="notLoggedIn" class="tw-flex tw-flex-row tw-gap-1">
+          <li>
+            <nuxt-link to="/login">
+              <button
+                class="
+                  tw-p-2
+                  tw-rounded-md
+                  tw-text-white
+                  tw-font-semibold
+                  tw-text-base
+                "
+              >
+                Login
+              </button>
+            </nuxt-link>
+          </li>
+          <li>
+            <nuxt-link to="/signup">
+              <button
+                class="
+                  tw-bg-green-500
+                  tw-p-2
+                  tw-rounded-md
+                  tw-text-white
+                  tw-font-semibold
+                  tw-text-base
+                "
+              >
+                Register
+              </button>
+            </nuxt-link>
+          </li>
+        </div>
+      </ul>
+    </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: "Navbar",
-};
-</script>
+
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
@@ -70,10 +112,6 @@ li {
   list-style: none;
 }
 
-/* li:hover {
-  color: gray;
-} */
-
 ul button {
   padding: 7px;
   background: darkgrey;
@@ -108,3 +146,20 @@ a:hover {
   transition-timing-function: ease-out;
 }
 </style>
+<script>
+export default {
+  name: "Navbar",
+  methods: {
+    logOut() {
+      this.$auth.$storage.removeUniversal("user");
+      this.$auth.logout();
+      // let resposne = await this.$axios.delete("/user/logout");
+      window.localStorage.clear();
+      this.$cookies.removeAll();
+      // console.log(resposne);
+      // this.$router.push("/");
+    },
+  },
+};
+</script>
+
