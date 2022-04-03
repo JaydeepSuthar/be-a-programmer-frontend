@@ -45,8 +45,8 @@ h1 {
   color: darkcyan;
 }
 h2 {
-  font-size: 40px;
-  color: rgb(3, 45, 184);
+  font-size: 35px;
+  color: darkblue;
 }
 </style>
 

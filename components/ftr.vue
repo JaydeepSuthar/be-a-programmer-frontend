@@ -7,7 +7,7 @@
         <v-container>
           <v-container>
             <a href="http://localhost:3000/"
-              ><v-avatar id="avatar" class="mb-4" size="60">
+              ><v-avatar id="avatar" class="mb-4" size="70">
                 <img src="logo2.png" alt=""
               /></v-avatar>
             </a>

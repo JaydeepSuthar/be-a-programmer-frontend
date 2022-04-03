@@ -13,9 +13,6 @@
             Build projects, practice and learn to code from scratch without
             leaving your browser . <br /><br /><br />
             <a href="/learn"> <button>Explore Couse Library</button> </a>
-            <v-btn color="warning" nuxt to="/admin/home">
-              Go to Admin Panel
-            </v-btn>
           </div>
           <div class="vid">
             <div class="wrapper">
@@ -79,6 +76,9 @@
   height: 100%;
   overflow: hidden;
 }
+h1 {
+  font-size: 50px;
+}
 
 button {
   border-radius: 25px;
@@ -117,6 +117,9 @@ button:hover {
   color: rgb(248, 124, 8);
   font-size: 30px;
   margin-left: 25px;
+}
+
+h1 {
 }
 </style>
 

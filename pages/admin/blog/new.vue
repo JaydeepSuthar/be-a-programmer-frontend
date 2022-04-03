@@ -54,14 +54,14 @@
 			></v-text-field> -->
 
       <v-btn type="submit" block large class="success">Save</v-btn>
-      <v-btn class="mt-5" @click="fillForm">Generate mock data</v-btn>
+      <!-- <v-btn class="mt-5" @click="fillForm">Generate mock data</v-btn>  -->
     </v-form>
   </v-container>
 </template>
 
 <script>
 import validation from "@/utils/validations";
-import faker from "faker";
+//  import faker from "faker";
 import { mapState } from "vuex";
 
 export default {
@@ -103,15 +103,15 @@ export default {
       }
     },
 
-    fillForm() {
-      const mockBlogData = {
-        title: faker.name.title(),
-        slug: faker.lorem.slug(),
-        body: faker.lorem.sentence(),
-      };
+    // fillForm() {
+    //   const mockBlogData = {
+    //     title: faker.name.title(),
+    //     slug: faker.lorem.slug(),
+    //     body: faker.lorem.sentence(),
+    //   };
 
-      this.blog = mockBlogData;
-    },
+    //   this.blog = mockBlogData;
+    // },
 
     blogAlreadyExists() {
       for (let i = 0; i < this.allBlogs.length; i++) {
