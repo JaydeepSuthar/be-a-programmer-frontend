@@ -1,11 +1,17 @@
 <template>
-	<v-container>
-		<NavigationBar />
+  <v-container>
+    <NavigationBar />
 
-		<h2 id="page__title">My Learning</h2>
+    <h2 id="page__title">My Learning</h2>
 
-		<LearningList />
-	</v-container>
+    <LearningList />
+  </v-container>
 </template>
 
 
+<script>
+export default {
+  name: "Learning",
+  middleware: "auth-user",
+};
+</script>

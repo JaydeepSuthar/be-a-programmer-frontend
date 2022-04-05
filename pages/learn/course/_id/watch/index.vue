@@ -31,6 +31,36 @@
         </div>
       </v-col>
     </v-row>
+    <v-row align-content="center">
+      <v-tabs grow center-active>
+        <v-tab>Description</v-tab>
+        <v-tab>Assignment</v-tab>
+        <v-tab>Summary</v-tab>
+
+        <v-tab-item>
+          <v-crad>
+            <v-container
+              ><h1>Description</h1>
+              <p>
+                this course is about to learn programing, this course is about
+                to learn programing,this course is about to learn programing,
+                this course is about to learn programing,this course is about to
+                learn programing,this course is about to learn programing,
+              </p></v-container
+            >
+          </v-crad></v-tab-item
+        >
+        <v-tab-item>
+          <v-container
+            ><h1>Assignments</h1>
+            <p>All link will be here</p></v-container
+          >
+        </v-tab-item>
+        <v-tab-item>
+          <v-container><h1>Summary</h1></v-container>
+        </v-tab-item>
+      </v-tabs>
+    </v-row>
   </v-main>
 </template>
 

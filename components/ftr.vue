@@ -128,6 +128,7 @@ ul li {
 }
 
 a:link {
+  color: whitesmoke;
   text-decoration: none;
 }
 a:hover {
@@ -138,6 +139,7 @@ a:visited {
   color: whitesmoke;
   text-decoration: none;
 }
+
 h3 {
   font-size: 25px;
 }
