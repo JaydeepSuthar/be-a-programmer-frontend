@@ -57,60 +57,65 @@
 	</div>
 </template>
 
-
 <script>
-	import { mapState } from "vuex";
+import { mapState } from "vuex";
 
-	export default {
-		layout: "admin",
-		async fetch({ store }) {
+export default {
+	layout: "admin",
+	async fetch({ store }) {
+		try {
 			await store.dispatch("courses/loadAllCourses");
+		} catch ({ response }) {
+			console.log(response);
+		}
+	},
+	data() {
+		return {
+			search: "",
+			showDialog: false,
+			headers: [
+				{
+					text: "Title",
+					align: "start",
+					sortable: false,
+					value: "title",
+				},
+				{ text: "Slug", value: "slug" },
+				{ text: "Price", value: "price" },
+				{ text: "Duration(in Months)", value: "duration" },
+				{ text: "is_active", value: "is_active" },
+				{ text: "Instructor", value: "admin.name" },
+				{ text: "Actions", value: "actions", sortable: false },
+			],
+		};
+	},
+	methods: {
+		closeDialogBox(value) {
+			this.showDialog = value;
 		},
-		data() {
-			return {
-				search: "",
-				showDialog: false,
-				headers: [
-					{
-						text: "Title",
-						align: "start",
-						sortable: false,
-						value: "title",
-					},
-					{ text: "Slug", value: "slug" },
-					{ text: "Price", value: "price" },
-					{ text: "Duration(in Months)", value: "duration" },
-					{ text: "is_active", value: "is_active" },
-					{ text: "Instructor", value: "admin.name" },
-					{ text: "Actions", value: "actions", sortable: false },
-				],
-			};
+		showChapter(value) {
+			// FIXME: THIS IS INCOMPLETE
+			console.log(value);
+			this.$router.push(`/admin/course/${value.id}/chapter`);
 		},
-		methods: {
-			closeDialogBox(value) {
-				this.showDialog = value;
-			},
-			showChapter(value) {
-				// FIXME: THIS IS INCOMPLETE
-				console.log(value);
-				this.$router.push(`/admin/course/${value.id}/chapter`);
-			},
 
-			async deleteCourse(course) {
-				let confirmation = confirm(
-					`Are you sure you want to delete ${course.title}`
-				);
+		async deleteCourse(course) {
+			let confirmation = confirm(
+				`Are you sure you want to delete ${course.title}`
+			);
 
-				if (confirmation) {
-					this.$store.dispatch('courses/delete', course);
-					this.$store.dispatch('snackbar/setSnackbar', {text: `You have successfully deleted your course, ${course.title}.`});
-				}
-			},
+			if (confirmation) {
+				this.$store.dispatch("courses/delete", course);
+				this.$store.dispatch("snackbar/setSnackbar", {
+					text: `You have successfully deleted your course, ${course.title}.`,
+				});
+			}
 		},
-		computed: {
-			...mapState({
-				courses: (state) => state.courses.courses,
-			}),
-		},
-	};
+	},
+	computed: {
+		...mapState({
+			courses: (state) => state.courses.courses,
+		}),
+	},
+};
 </script>

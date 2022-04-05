@@ -3,17 +3,21 @@
 		<v-container>
 			<nav class="navbar tw-min-w-full tw-py-2">
 				<ul class="tw-flex tw-flex-row tw-list-none">
-					<div class="left tw-inline-block">
+					<div
+						@click="() => this.$router.push('/')"
+						class="left tw-inline-block tw-cursor-pointer"
+					>
 						<!-- Logo -->
 						<span>
-							<v-img
-								src="https://avatars.githubusercontent.com/u/52647252?v=4&s=460"
+							<nuxt-img
+								src="logo2.png"
 								width="50"
+								class="tw-rounded-full"
 							/>
 						</span>
 						<span>
 							Be A Programmer
-							{{ this.$store.state.auth.loggedIn }}
+							<!-- {{ this.$store.state.auth.loggedIn }} -->
 						</span>
 					</div>
 

@@ -1,12 +1,12 @@
 <template>
-  <div class="wrapper" style="background: rgb(206, 206, 206)">
+  <div class="wrapper tw-bg-slate-50">
     <NavigationBar />
     <section
       class="
         tw-header
         tw-h-44
-        tw-bg-slate-900
         tw-flex
+        tw-bg-slate-900
         tw-flex-row
         tw-justify-center
         tw-items-center

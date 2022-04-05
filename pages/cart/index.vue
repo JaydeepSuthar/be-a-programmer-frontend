@@ -27,9 +27,7 @@
 														{{ item.title }}
 													</v-list-item-title>
 													<v-list-item-subtitle>
-
-													&#8377;	{{ item.price }}
-
+														&#8377; {{ item.price }}
 													</v-list-item-subtitle>
 													<hr />
 												</v-list-item-content>
@@ -63,7 +61,16 @@
 										>
 									</v-col>
 								</v-row>
-								<p class="mt-5">Total: Rs. {{ totalPrice }}</p>
+								<p class="mt-5">
+									Gross Amount: Rs. {{ totalPrice }}
+								</p>
+								<p v-show="this.couponApplied" class="mt-5">
+									Discount: Rs. {{ this.discount }}
+								</p>
+								<p class="mt-5">
+									Net Payable Amount: Rs.
+									{{ totalPrice - this.discount }}
+								</p>
 
 								<br />
 								<v-btn
@@ -81,21 +88,12 @@
 		</v-app>
 	</div>
 </template>
-<style scoped>
-.cart {
-	background: #292928;
-	color: whitesmoke;
-}
-
-.btn {
-	border-radius: 10px;
-	padding: 20px;
-	font-size: 15px;
-}
-</style>
 
 <script>
+import axios from "axios";
+
 export default {
+	middleware: "auth-user",
 	async asyncData({ $axios }) {
 		let response = await $axios("/cart");
 		let cartItemFromBackend = response.data.data;
@@ -113,6 +111,9 @@ export default {
 			coupon: "",
 			script: `https://checkout.razorpay.com/v1/checkout.js`,
 			cartItems: [],
+			couponApplied: false,
+			discount: 0,
+			pay_id: "",
 		};
 	},
 	methods: {
@@ -123,6 +124,11 @@ export default {
 				});
 
 				alert(`coupon is applied`);
+
+				if (response.data.is_success == true) {
+					this.couponApplied = true;
+					this.discount = response.data.data;
+				}
 			} catch ({ response }) {
 				console.log(response);
 
@@ -146,21 +152,44 @@ export default {
 			});
 		},
 
+		async handlePaymentSuccess(response, order) {
+			// console.log(response)
+			let paymentVerifyResponse = await this.$axios.post(
+				"/payment/success",
+				{
+					payment_id: response.razorpay_payment_id,
+					orderDetails: order,
+				}
+			);
+
+			if (
+				paymentVerifyResponse.status === 200 ||
+				paymentVerifyResponse.status === 204
+			) {
+				this.$router.push("/me/learning");
+			} else {
+				alert('error in payment. please try again after some time')
+			}
+		},
+
 		async pay() {
 			const result = await this.loadRazorPay();
 			if (!result) {
 				alert("Failed to load razorpay script");
 				return;
 			}
-			const data = {
-				course_id: `620cc4e3ed391d5f33f13b84`,
-			};
-			let response = await this.$axios.post("/payment/create", data);
-			console.log(response.data.data);
+
+			let paymentResponse = await this.$axios.post("/payment/create", {
+				discount: this.discount,
+			});
+			let orderDetails = paymentResponse.data.data;
 
 			const paymentObject = new window.Razorpay({
 				key: `rzp_test_WdCmBIvGEANsUe`,
-				...response.data.data,
+				...paymentResponse.data.data,
+				handler: (response) => {
+					this.handlePaymentSuccess(response, orderDetails);
+				},
 			});
 			paymentObject.open();
 		},
@@ -175,3 +204,16 @@ export default {
 	},
 };
 </script>
+
+<style scoped>
+.cart {
+	background: #292928;
+	color: whitesmoke;
+}
+
+.btn {
+	border-radius: 10px;
+	padding: 20px;
+	font-size: 15px;
+}
+</style>

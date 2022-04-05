@@ -44,7 +44,8 @@ export default {
 		// https://go.nuxtjs.dev/pwa
 		'@nuxtjs/pwa',
 		'@nuxtjs/auth',
-		"cookie-universal-nuxt"
+		"cookie-universal-nuxt",
+		'@nuxt/image',
 	],
 
 	// Nuxt Auth

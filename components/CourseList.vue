@@ -1,10 +1,10 @@
 <template>
 	<v-container>
-		<v-row align-content-sm="center">
+		<v-row>
 			<v-col
 				v-for="course in courses"
 				:key="course.id"
-				xl="3"
+				xl="4"
 				lg="4"
 				md="4"
 				sm="6"
