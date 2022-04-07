@@ -27,7 +27,7 @@
 				</v-list-items>
 			</v-list>
 
-			<div v-else class="tw-min-h-screen tw-flex tw-justify-center tw-items-center">
+			<div v-else  class="tw-min-h-screen tw-flex tw-justify-center tw-items-center">
 				<p class="main__text tw-font-semibold tw-opacity-40 tw-text-4xl">You Haven't Enrolled in any Courses</p>
 			</div>
 		</v-container>

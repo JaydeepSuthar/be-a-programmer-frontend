@@ -93,6 +93,7 @@ if (process.browser) {
 }
 
 export default {
+	middleware: "watch-gaurd",
 	async fetch({ store, params }) {
 		await store.dispatch("videos/loadAllVideoOfCourse", params.id);
 	},
