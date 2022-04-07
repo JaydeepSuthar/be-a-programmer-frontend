@@ -18,7 +18,77 @@
         <v-tab>Learning</v-tab>
         <v-tab>Certificate</v-tab>
 
-        <v-tab-item id="Personal-Details"> Details </v-tab-item>
+        <v-tab-item>
+          <br />
+
+          <v-form>
+            <v-row>
+              <v-col col="12" sm="12" md="10">
+                <v-text-field v-model="name" label="name" outlined disabled>
+                </v-text-field>
+              </v-col>
+              <v-icon> mdi-pencil </v-icon>
+            </v-row>
+
+            <v-row>
+              <v-col col="12" sm="12" md="10">
+                <v-text-field
+                  v-model="email"
+                  label="email"
+                  disabled
+                  outlined
+                ></v-text-field>
+              </v-col>
+              <v-icon> mdi-pencil </v-icon>
+            </v-row>
+            <v-row>
+              <v-col col="12" sm="12" md="10">
+                <v-text-field
+                  v-model="contact"
+                  label="Contact no"
+                  outlined
+                  disabled
+                ></v-text-field>
+              </v-col>
+              <v-icon> mdi-pencil </v-icon>
+            </v-row>
+            <v-row>
+              <v-col col="12" sm="12" md="10">
+                <v-text-field
+                  v-model="Password"
+                  label="Password"
+                  outlined
+                  disabled
+                  type="password"
+                ></v-text-field>
+              </v-col>
+              <v-icon> mdi-pencil </v-icon>
+            </v-row>
+            <v-row>
+              <v-col col="12" sm="12" md="10">
+                <v-textarea
+                  v-model="address"
+                  label="address"
+                  outlined
+                  disabled
+                ></v-textarea>
+              </v-col>
+              <v-icon> mdi-pencil </v-icon>
+            </v-row>
+
+            <v-row>
+              <v-col col="12" sm="12" md="10">
+                <v-text-field
+                  v-model="qualification"
+                  label="qualification"
+                  outlined
+                  disabled
+                ></v-text-field>
+              </v-col>
+              <v-icon> mdi-pencil </v-icon>
+            </v-row>
+          </v-form></v-tab-item
+        >
         <v-tab-item id="Learning"> Learning </v-tab-item>
         <v-tab-item id="Certificate"> Certificate </v-tab-item>
       </v-tabs>
