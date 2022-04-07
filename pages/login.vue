@@ -56,6 +56,11 @@ export default {
 	components: {
 		UserAuthForm,
 	},
+	beforeCreate () {
+		if (this.$store.state.auth.loggedIn) {
+			this.$router.push('/')
+		}
+	},
 	methods: {
 		async handleUserLogin(loginInfo) {
 			try {
