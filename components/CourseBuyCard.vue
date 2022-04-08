@@ -1,9 +1,11 @@
 <template>
 	<div>
 		<v-card elevation="6" width="340px" class="ma-2">
-			<v-img
-				class="bg-slate-700"
-				:src="`http://localhost:8000/static/img/${course.thumbnail}`"
+			<nuxt-img
+				:src="course.thumbnail"
+				width="250"
+				height="250"
+				:modifiers="{ roundCorner: 'max' }"
 			/>
 
 			<v-card-title class="mt-3">₹{{ course.price }}</v-card-title>

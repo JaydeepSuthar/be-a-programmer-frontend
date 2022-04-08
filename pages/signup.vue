@@ -121,7 +121,11 @@ export default {
 				password: "",
 				add: "",
 			},
-			qual: ["12th Pass", "higher_secondary", "Post Graduate"],
+			qual: [
+				{ "Higher Secondary": "higher_secondary" },
+				{ "Under Graduate": "under_graduate" },
+				{ "Post Graduate": "post_graduate" },
+			],
 		};
 	},
 

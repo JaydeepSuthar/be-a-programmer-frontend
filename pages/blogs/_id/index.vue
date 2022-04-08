@@ -1,36 +1,39 @@
 <template>
-  <div>
-    <navbar />
-    <v-card>
-      <v-container>
-        <h2>{{ blog.title }}</h2>
-      </v-container>
-    </v-card>
-    <v-card>
-      <v-container>
-        <v-img :src="`http://localhost:8000/public/img/${blog.thumbnail}`" />
-        <p>
-          {{ blog.body }}
-        </p>
-      </v-container>
-    </v-card>
+	<div>
+		<navbar />
+		<v-card>
+			<v-container>
+				<h2>{{ blog.title }}</h2>
+			</v-container>
+		</v-card>
+		<v-card>
+			<v-container>
+				<nuxt-img
+					:src="blog.thumbnail"
+					:alt="blog.title"
+					:modifiers="{ roundCorner: 'max' }"
+				/>
+				<p>
+					{{ blog.body }}
+				</p>
+			</v-container>
+		</v-card>
 
-    <ftr />
-  </div>
+		<ftr />
+	</div>
 </template>
-
 
 <script>
 import { mapGetters } from "vuex";
 export default {
-  computed: {
-    ...mapGetters({
-      getBlog: "blogs/get",
-    }),
+	computed: {
+		...mapGetters({
+			getBlog: "blogs/get",
+		}),
 
-    blog() {
-      return this.getBlog(this.$route.params.id);
-    },
-  },
+		blog() {
+			return this.getBlog(this.$route.params.id);
+		},
+	},
 };
 </script>

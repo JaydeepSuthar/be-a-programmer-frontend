@@ -40,12 +40,11 @@
 				/>
 			</v-col>
 			<v-col cols="12">
-				<!-- <v-btn class="primary"> -->
-				<!-- <v-icon left>mdi-cloud-upload</v-icon> -->
-				<!-- <span>Upload</span> -->
-				<v-file-input filled prepend-icon="mdi-camera"></v-file-input>
-				<!-- v-model="course.thumbnail" -->
-				<!-- </v-btn> -->
+				<v-file-input
+					@change="uploadImgToCloudinary"
+					filled
+					prepend-icon="mdi-camera"
+				></v-file-input>
 			</v-col>
 			<v-col cols="12" sm="6" md="4">
 				<v-text-field
@@ -104,7 +103,6 @@
 
 <script>
 import validation from "@/utils/validations";
-// import faker from "faker";
 
 import { mapState } from "vuex";
 
@@ -118,7 +116,7 @@ export default {
 				title: "",
 				slug: "",
 				description: "",
-				// thumbnail: "",
+				thumbnail: "",
 				price: "",
 				duration: "",
 				requirement: "",
@@ -128,6 +126,29 @@ export default {
 		};
 	},
 	methods: {
+		async uploadImgToCloudinary(file) {
+			// console.log(`E: ` + e);
+			// const file = e.target.files[0];
+
+			/* Make sure file exists */
+			if (!file) return;
+			const readData = (f) =>
+				new Promise((resolve) => {
+					const reader = new FileReader();
+					reader.onloadend = () => resolve(reader.result);
+					reader.readAsDataURL(f);
+				});
+
+			/* Read data */
+			const data = await readData(file);
+
+			/* upload the converted data */
+			const instance = await this.$cloudinary.upload(data, {
+				folder: "courses",
+				uploadPreset: "beap-img",
+			});
+			this.course.thumbnail = instance.url;
+		},
 		async handleSubmit() {
 			if (this.$refs.form.validate()) {
 				if (this.courseAlreadyExists() === true) {
@@ -154,22 +175,6 @@ export default {
 				}
 			}
 		},
-		// fillForm() {
-		// 	const mockCourseData = {
-		// 		title: faker.name.title(),
-		// 		slug: faker.lorem.slug(),
-		// 		description: faker.lorem.sentence(),
-		// 		thumbnail: `${faker.lorem.word()}.png`,
-		// 		price: Math.floor(Math.random() * 1000 + 1),
-		// 		duration: `60`,
-		// 		requirement: faker.lorem.word(),
-		// 		is_active: true,
-		// 		adminId: `620cc340ed391d5f33f13b6d`,
-		// 	};
-
-		// 	this.course = mockCourseData;
-		// },
-
 		courseAlreadyExists() {
 			for (let i = 0; i < this.allCourses.length; i++) {
 				if (

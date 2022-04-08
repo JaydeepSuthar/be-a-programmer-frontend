@@ -1,5 +1,5 @@
 <template>
-	<v-form ref='form'>
+	<v-form ref="form">
 		<v-row>
 			<v-col cols="12" sm="6" md="6">
 				<v-text-field
@@ -39,14 +39,13 @@
 					]"
 				/>
 			</v-col>
-			<v-col cols="12">
-				<!-- <v-btn class="primary"> -->
-				<!-- <v-icon left>mdi-cloud-upload</v-icon> -->
-				<!-- <span>Upload</span> -->
-				<v-file-input filled prepend-icon="mdi-camera"></v-file-input>
-				<!-- v-model="course.thumbnail" -->
-				<!-- </v-btn> -->
-			</v-col>
+			<!-- <v-col cols="12">
+				<v-file-input
+					@change="uploadImgToCloudinary"
+					filled
+					prepend-icon="mdi-camera"
+				></v-file-input>
+			</v-col> -->
 			<v-col cols="12" sm="6" md="4">
 				<v-text-field
 					outlined
@@ -102,38 +101,40 @@
 </template>
 
 <script>
-	import validation from "@/utils/validations";
-	import { mapGetters } from "vuex";
+import validation from "@/utils/validations";
+import { mapGetters } from "vuex";
 
-	export default {
-		name: "UpdateCreateForm",
-		data() {
-			return {
-				valid: false,
-				...validation,
-			};
+export default {
+	name: "UpdateCreateForm",
+	data() {
+		return {
+			valid: false,
+			...validation,
+		};
+	},
+	methods: {
+		async handleSubmit() {
+			if (this.$refs.form.validate()) {
+				let course = await this.$store.dispatch(
+					"courses/edit",
+					this.course
+				);
+				this.$store.dispatch("snackbar/setSnackbar", {
+					text: `You have successfully updated course`,
+				});
+				this.$router.push("/admin/course");
+			}
 		},
-		methods: {
-			async handleSubmit() {
-				if (this.$refs.form.validate()) {
-					let course = await this.$store.dispatch(
-						"courses/edit",
-						this.course
-					);
-					this.$store.dispatch('snackbar/setSnackbar', {text: `You have successfully updated course`});
-					this.$router.push("/admin/course");
-				}
-			},
-		},
+	},
 
-		computed: {
-			...mapGetters({
-				getCourse: "courses/get",
-			}),
+	computed: {
+		...mapGetters({
+			getCourse: "courses/get",
+		}),
 
-			course() {
-				return this.getCourse(this.$route.params.id);
-			},
+		course() {
+			return this.getCourse(this.$route.params.id);
 		},
-	};
+	},
+};
 </script>

@@ -15,11 +15,14 @@
 					class="ma-2"
 					:to="`/learn/course/${course.id}`"
 				>
-					<v-img
-						:src="`http://localhost:8000/static/img/${course.thumbnail}`"
-						@error="`http://localhost:8000/static/img/nodejs.png`"
+					<nuxt-img
+						:src="course.thumbnail"
+						width="300"
+						height="300"
+						:modifiers="{ roundCorner: 'max' }"
 					/>
 					<v-card-title>{{ course.title }}</v-card-title>
+					<v-card-subtitle>₹ {{ course.price }}</v-card-subtitle>
 				</v-card>
 			</v-col>
 		</v-row>

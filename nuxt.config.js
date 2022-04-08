@@ -45,8 +45,21 @@ export default {
 		'@nuxtjs/pwa',
 		'@nuxtjs/auth',
 		"cookie-universal-nuxt",
-		// '@nuxt/image',
+		'@nuxt/image',
+		'@nuxtjs/cloudinary',
 	],
+	cloudinary: {
+		cloudName: 'be-a-programmer',
+		apiKey: '562251545287728',
+		apiSecret: 'N8aL1A0HGDZudWV3mC83B_bAFeo',
+		useComponent: true
+	},
+
+	// image: {
+	// 	cloudinary: {
+	// 		baseURL: 'https://res.cloudinary.com/be-a-programmer/image/upload/'
+	// 	}
+	// }
 
 	// Nuxt Auth
 	auth: {

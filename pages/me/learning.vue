@@ -6,13 +6,15 @@
 				<v-list-items v-for="item in this.courseList" :key="item.id">
 					<v-card class="mb-5" hover>
 						<v-row>
-							<v-col cols="2">
-								<v-img
+							<v-col cols="3">
+								<nuxt-img
+									:src="item.thumbnail"
 									width="200"
-									:src="`http://localhost:8000/static/img/${item.thumbnail}`"
-								></v-img>
+									height="200"
+									:modifiers="{ roundCorner: 'max' }"
+								/>
 							</v-col>
-							<v-col cols="10">
+							<v-col cols="8">
 								<v-card-title>{{ item.title }}</v-card-title>
 								<v-card-actions>
 									<v-btn
@@ -27,8 +29,15 @@
 				</v-list-items>
 			</v-list>
 
-			<div v-else  class="tw-min-h-screen tw-flex tw-justify-center tw-items-center">
-				<p class="main__text tw-font-semibold tw-opacity-40 tw-text-4xl">You Haven't Enrolled in any Courses</p>
+			<div
+				v-else
+				class="tw-min-h-screen tw-flex tw-justify-center tw-items-center"
+			>
+				<p
+					class="main__text tw-font-semibold tw-opacity-40 tw-text-4xl"
+				>
+					You Haven't Enrolled in any Courses
+				</p>
 			</div>
 		</v-container>
 	</section>

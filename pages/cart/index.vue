@@ -16,19 +16,37 @@
 											v-for="(item, index) in cartItems"
 										>
 											<v-list-item :key="index">
-												<v-list-item-avatar>
-													<v-img
-														src="https://avatars.githubusercontent.com/u/52647252?v=4&s=460"
-													></v-img>
-												</v-list-item-avatar>
+												<nuxt-img
+													:src="item.thumbnail"
+													width="50"
+													height="50"
+													:modifiers="{
+														roundCorner: 'max',
+													}"
+													class="mr-5"
+												/>
 
 												<v-list-item-content>
 													<v-list-item-title>
 														{{ item.title }}
 													</v-list-item-title>
 													<v-list-item-subtitle>
-														&#8377; {{ item.price }}
+														&#8377;
+														{{ item.price }}
 													</v-list-item-subtitle>
+													<v-icon
+														@click="
+															() =>
+																removeItemFromCart(
+																	item.id
+																)
+														"
+														style="
+															position: absolute;
+															right: 25px;
+														"
+														>mdi-trash-can</v-icon
+													>
 													<hr />
 												</v-list-item-content>
 											</v-list-item>
@@ -69,7 +87,10 @@
 								</p>
 								<p class="mt-5">
 									Net Payable Amount: Rs.
-									{{ totalPrice - this.discount }}
+									<span v-if="totalPrice - this.discount > 0">
+										{{ totalPrice - this.discount }}
+									</span>
+									<span v-else>1</span>
 								</p>
 
 								<br />
@@ -90,8 +111,6 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
 	middleware: "auth-user",
 	async asyncData({ $axios }) {
@@ -117,6 +136,14 @@ export default {
 		};
 	},
 	methods: {
+		async removeItemFromCart(id) {
+			console.log(id);
+			let response = await this.$axios.post("/cart/delete", { id: id });
+
+			if (response.status == 200 || response.status == 204) {
+				this.$nuxt.refresh();
+			}
+		},
 		async checkCouponIsValidOrNot() {
 			try {
 				let response = await this.$axios.post("/course/coupon/check", {
@@ -168,7 +195,7 @@ export default {
 			) {
 				this.$router.push("/me/learning");
 			} else {
-				alert('error in payment. please try again after some time')
+				alert("error in payment. please try again after some time");
 			}
 		},
 

@@ -9,11 +9,11 @@
 					>
 						<!-- Logo -->
 						<span>
-							<!-- <nuxt-img
+							<nuxt-img
 								src="logo2.png"
 								width="50"
 								class="tw-rounded-full"
-							/> -->
+							/>
 						</span>
 						<span>
 							Be A Programmer

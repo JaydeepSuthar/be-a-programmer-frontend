@@ -30,6 +30,10 @@
 							</v-list-item>
 						</v-list-group>
 					</v-list>
+
+					<v-btn :href="this.exam" target="_blank" class="danger"
+						>Exam</v-btn
+					>
 					<!-- {{ this.videoSource }} -->
 				</div>
 			</v-col>
@@ -60,6 +64,17 @@
 					<v-tab-item>
 						<v-container>
 							<h3>Assignments</h3>
+
+							<v-list>
+								<v-list-item
+									v-for="item in assignments"
+									:key="item.id"
+									:href="item.src"
+									target="_blank"
+								>
+									{{ item.src }}
+								</v-list-item>
+							</v-list>
 						</v-container>
 					</v-tab-item>
 					<!-- <v-tab-item>
@@ -100,10 +115,21 @@ export default {
 	data() {
 		return {
 			videoSource: "",
+			assignments: [],
+			exam: "",
 		};
 	},
-	mounted() {
+	async mounted() {
 		this.videoSource = this.chapters[0].videos[0].src;
+		let response = await this.$axios.get(
+			`/misc/assignments/${this.$route.params.id}`
+		);
+		let examResponse = await this.$axios.get(
+			`/misc/exam/${this.$route.params.id}`
+		);
+
+		this.exam = await examResponse.data.data;
+		this.assignments = await response.data.data;
 	},
 	methods: {
 		getCourseId() {

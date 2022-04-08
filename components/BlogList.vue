@@ -2,21 +2,21 @@
 	<div>
 		<v-card v-for="blog in blogs" :key="blog.id" hover class="ma-2">
 			<div class="blog" id="bloglist">
-				<div class="img"><img src="about.png" alt="" /></div>
+				<div class="img">
+					<nuxt-img
+						height="300"
+						width="300"
+						:src="blog.thumbnail"
+						:alt="blog.title"
+					/>
+				</div>
 				<div class="contn">
 					<v-container>
 						<h2>{{ blog.title }}</h2>
-						<v-container>
-							<v-container>
-								<p class="chars">{{ blog.body }}</p>
-								<v-btn
-									class="success"
-									:to="`/blogs/${blog.id}`"
-								>
-									Read more
-								</v-btn>
-							</v-container>
-						</v-container>
+						<p class="chars">{{ blog.body }}</p>
+						<v-btn class="success" :to="`/blogs/${blog.id}`">
+							Read more
+						</v-btn>
 					</v-container>
 				</div>
 			</div>
