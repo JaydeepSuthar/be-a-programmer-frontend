@@ -1,5 +1,7 @@
 import colors from 'vuetify/es5/util/colors'
 
+require('dotenv').config()
+
 export default {
 	// Global page headers: https://go.nuxtjs.dev/config-head
 	head: {
@@ -47,11 +49,13 @@ export default {
 		"cookie-universal-nuxt",
 		'@nuxt/image',
 		'@nuxtjs/cloudinary',
+		'@nuxtjs/dotenv',
 	],
+
 	cloudinary: {
-		cloudName: 'be-a-programmer',
-		apiKey: '562251545287728',
-		apiSecret: 'N8aL1A0HGDZudWV3mC83B_bAFeo',
+		cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+		apiKey: process.env.CLOUDINARY_API_KEY,
+		apiSecret: process.env.CLOUDINARY_API_SECRET,
 		useComponent: true
 	},
 
@@ -100,7 +104,7 @@ export default {
 	// Axios module configuration: https://go.nuxtjs.dev/config-axios
 	axios: {
 		// Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-		baseURL: 'http://localhost:8000/api',
+		baseURL: process.env.API_URL,
 		credentials: true
 	},
 
