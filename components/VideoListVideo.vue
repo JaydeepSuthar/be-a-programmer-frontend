@@ -2,7 +2,7 @@
 	<div class="card-container">
 		<v-card width="340px" hover class="ma-2" :to="`/watch/${video.id}`">
 			<!-- :to="{ name: 'video-watch', params: { id: video.id } }" -->
-			<v-img :src="`http://localhost:8000/static/img/${video.thumbnail}`" />
+			<v-img :src="`${process.env.BACKEND_URL}/static/img/${video.thumbnail}`" />
 			<v-card-title>{{ video.title }} </v-card-title>
 			<v-card-text>
 				<!-- something -->

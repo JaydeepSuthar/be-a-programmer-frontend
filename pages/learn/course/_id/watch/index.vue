@@ -170,10 +170,10 @@ export default {
 				sources: [
 					{
 						type: "video/mp4",
-						src: `http://localhost:8000/video/${this.videoSource}`,
+						src: `${process.env.BACKEND_URL}/video/${this.videoSource}`,
 					},
 				],
-				poster: `http://localhost:8000/static/img/nodejs.png`,
+				poster: `${process.env.BACKEND_URL}/static/img/nodejs.png`,
 				fluid: true,
 			};
 		},
