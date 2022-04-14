@@ -2,7 +2,7 @@
 	<v-container>
 		<v-row id="user-header">
 			<v-col id="profile-photo">
-				<nuxt-img src="/user.png" class="tw-rounded-full" />
+				<img src="/user.png" class="tw-rounded-full" />
 			</v-col>
 			<v-col id="user-details tw-h-full">
 				<div

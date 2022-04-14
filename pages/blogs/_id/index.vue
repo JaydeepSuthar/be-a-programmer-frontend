@@ -8,7 +8,7 @@
 		</v-card>
 		<v-card>
 			<v-container>
-				<nuxt-img
+				<img
 					:src="blog.thumbnail"
 					:alt="blog.title"
 					:modifiers="{ roundCorner: 'max' }"

@@ -16,7 +16,7 @@
 											v-for="(item, index) in cartItems"
 										>
 											<v-list-item :key="index">
-												<nuxt-img
+												<img
 													:src="item.thumbnail"
 													width="50"
 													height="50"

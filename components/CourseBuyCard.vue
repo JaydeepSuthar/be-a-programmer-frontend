@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<v-card elevation="6" width="340px" class="ma-2">
-			<nuxt-img
+			<img
 				:src="course.thumbnail"
 				width="250"
 				height="250"

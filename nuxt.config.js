@@ -47,10 +47,26 @@ export default {
 		'@nuxtjs/pwa',
 		'@nuxtjs/auth',
 		"cookie-universal-nuxt",
-		'@nuxt/image',
 		'@nuxtjs/cloudinary',
 		'@nuxtjs/dotenv',
 	],
+
+	pwa: {
+		meta: {
+			title: 'Be a Programmer',
+			author: 'Jaydeep Suthar',
+			ogSiteName: 'Be a Programmer',
+			ogTitle: 'Be a Programmer',
+			theme_color: '#00C58E',
+			nativeUI: true
+		},
+		manifest: {
+			name: 'Be a Programmer',
+			short_name: 'Beap',
+			theme_color: '#00C58E',
+			lang: 'en',
+		},
+	},
 
 	cloudinary: {
 		cloudName: process.env.CLOUDINARY_CLOUD_NAME,

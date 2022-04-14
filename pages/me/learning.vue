@@ -7,7 +7,7 @@
 					<v-card class="mb-5" hover>
 						<v-row>
 							<v-col cols="3">
-								<nuxt-img
+								<img
 									:src="item.thumbnail"
 									width="200"
 									height="200"

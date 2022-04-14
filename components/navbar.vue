@@ -3,7 +3,7 @@
     <div class="logo">
       <a href="http://localhost:3000/"
         ><v-avatar size="70">
-          <nuxt-img src="logo2.png" />
+          <img src="logo2.png" />
         </v-avatar>
       </a>
     </div>

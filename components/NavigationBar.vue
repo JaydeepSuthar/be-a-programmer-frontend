@@ -9,7 +9,7 @@
 					>
 						<!-- Logo -->
 						<span>
-							<nuxt-img
+							<img
 								src="logo2.png"
 								width="50"
 								class="tw-rounded-full"

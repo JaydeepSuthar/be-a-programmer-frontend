@@ -15,7 +15,7 @@
 					class="ma-2"
 					:to="`/learn/course/${course.id}`"
 				>
-					<nuxt-img
+					<img
 						:src="course.thumbnail"
 						width="300"
 						height="300"

@@ -3,7 +3,7 @@
 		<v-card v-for="blog in blogs" :key="blog.id" hover class="ma-2">
 			<div class="blog" id="bloglist">
 				<div class="img">
-					<nuxt-img
+					<img
 						height="300"
 						width="300"
 						:src="blog.thumbnail"
