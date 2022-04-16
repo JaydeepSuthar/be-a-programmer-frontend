@@ -10,7 +10,7 @@
 						<v-container>
 							<UserAuthForm
 								:submitForm="handleUserLogin"
-								buttonText="Login"
+							buttonText="Login"
 							/>
 
 							<br />
@@ -18,6 +18,8 @@
 							<!-- <v-btn @click="loginWithGoogle" color="blue">
 								Sign in with Google</v-btn
 							> -->
+							<nuxt-link to="/forgot">Forgot Password</nuxt-link>
+							<v-dialog></v-dialog>
 							<br />
 							<br />
 
