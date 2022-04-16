@@ -10,6 +10,13 @@
 				subText="Registered Users"
 			/>
 			<DashboardCard
+				v-else-if="this.$auth.user.role === 'instructor'"
+				id="total-user"
+				:primaryText="users"
+				subText="Users Enrolled In Your Courses"
+			/>
+
+			<DashboardCard
 				v-if="instructors > 0"
 				id="total-instructor"
 				:primaryText="instructors"
